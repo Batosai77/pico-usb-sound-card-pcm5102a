@@ -1,0 +1,26 @@
+# Build directories & artifacts
+build/
+cmake-build-*/
+*.elf
+*.bin
+*.hex
+*.dis
+*.map
+
+# Pico SDK clone (automatically cloned by build.sh if missing)
+pico-sdk/
+
+# Python cache & temporary files
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+env/
+venv/
+
+# Editor & OS files
+.vscode/
+.idea/
+*.swp
+*~
+.DS_Store
