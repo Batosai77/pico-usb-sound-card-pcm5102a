@@ -26,6 +26,13 @@ Audio digital dari komputer (seperti Spotify, YouTube, game, atau file musik) di
 
 ---
 
+## ⚡ Firmware Siap Pakai (Direct Download .uf2)
+
+Bagi Anda yang ingin langsung mencoba tanpa perlu install compiler atau melakukan build:
+* **File Firmware UF2:** Langsung unduh [pico_usb_sound_card.uf2](pico_usb_sound_card.uf2) atau buka folder [firmware/pico_usb_sound_card.uf2](firmware/pico_usb_sound_card.uf2).
+* **Cara Flash:** Tekan tombol **BOOTSEL** di Pico $\rightarrow$ Colokkan ke USB PC $\rightarrow$ Lepas BOOTSEL $\rightarrow$ Drag-and-drop file **`pico_usb_sound_card.uf2`** ke drive **`RPI-RP2`**. Selesai!
+
+
 ## 📌 1. Skema Pengkabelan (Wiring Diagram PCM5102A)
 
 Hubungkan pin Raspberry Pi Pico ke modul DAC **PCM5102A** sebagai berikut:
