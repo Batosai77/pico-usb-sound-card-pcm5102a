@@ -97,7 +97,8 @@ void tud_audio_feedback_params_cb(uint8_t func_id, uint8_t alt_itf, audio_feedba
 }
 
 // Callback saat paket audio diterima dari Komputer via USB
-bool tud_audio_rx_done_pre_read_cb(uint8_t rhport, uint16_t n_bytes_received, uint8_t func_id, uint8_t ep_out, uint8_t cur_alt_setting) {
+// Gunakan post_read: pada titik ini data paket sudah dimasukkan TinyUSB ke FIFO.
+bool tud_audio_rx_done_post_read_cb(uint8_t rhport, uint16_t n_bytes_received, uint8_t func_id, uint8_t ep_out, uint8_t cur_alt_setting) {
     (void)rhport;
     (void)func_id;
     (void)ep_out;
@@ -106,7 +107,10 @@ bool tud_audio_rx_done_pre_read_cb(uint8_t rhport, uint16_t n_bytes_received, ui
     last_packet_time_ms = to_ms_since_boot(get_absolute_time());
 
     int16_t packet_buffer[CFG_TUD_AUDIO_FUNC_1_EP_OUT_SZ_MAX / 2];
-    uint16_t bytes_read = tud_audio_read(packet_buffer, n_bytes_received);
+    // Batasi agar tidak melebihi ukuran buffer (mencegah stack overflow)
+    uint16_t to_read = n_bytes_received;
+    if (to_read > sizeof(packet_buffer)) to_read = sizeof(packet_buffer);
+    uint16_t bytes_read = tud_audio_read(packet_buffer, to_read);
     uint16_t sample_frames = bytes_read / 4; // 2 byte Left, 2 byte Right
 
     for (uint16_t i = 0; i < sample_frames; i++) {
@@ -207,6 +211,33 @@ bool tud_audio_feature_unit_set_request(uint8_t rhport, audio_control_request_t 
             if (volume_master < 0) volume_master = 0;
         }
         return true;
+    }
+    return false;
+}
+
+// Callback resmi TinyUSB untuk request class-specific ke Entity (Clock / Feature Unit).
+// Tanpa ini, TinyUSB memakai versi weak yang selalu STALL sehingga host
+// (Windows/Android) gagal menjalankan device ("device cannot start").
+bool tud_audio_get_req_entity_cb(uint8_t rhport, tusb_control_request_t const *p_request) {
+    audio_control_request_t const *request = (audio_control_request_t const *)p_request;
+
+    if (request->bEntityID == UAC2_ENTITY_CLOCK) {
+        return tud_audio_clock_get_request(rhport, request);
+    }
+    if (request->bEntityID == UAC2_ENTITY_FEATURE_UNIT) {
+        return tud_audio_feature_unit_get_request(rhport, request);
+    }
+    return false;
+}
+
+bool tud_audio_set_req_entity_cb(uint8_t rhport, tusb_control_request_t const *p_request, uint8_t *buf) {
+    audio_control_request_t const *request = (audio_control_request_t const *)p_request;
+
+    if (request->bEntityID == UAC2_ENTITY_CLOCK) {
+        return tud_audio_clock_set_request(rhport, request, buf);
+    }
+    if (request->bEntityID == UAC2_ENTITY_FEATURE_UNIT) {
+        return tud_audio_feature_unit_set_request(rhport, request, buf);
     }
     return false;
 }
