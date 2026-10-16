@@ -1,11 +1,23 @@
-# Build directories & artifacts
-build/
+# Build directories & artifacts (repo root only)
 cmake-build-*/
-*.elf
-*.bin
-*.hex
-*.dis
-*.map
+/*.elf
+/*.bin
+/*.hex
+/*.dis
+/*.map
+
+# CMake cache inside build/ (firmware outputs in build/ are tracked)
+build/_deps/
+build/CMakeFiles/
+build/CMakeCache.txt
+build/cmake_install.cmake
+build/Makefile
+build/pico-sdk/
+build/picotool/
+build/generated/
+build/pioasm/
+build/pioasm-install/
+build/pico_dac_pcm5102.*
 
 # Pico SDK clone (automatically cloned by build.sh if missing)
 pico-sdk/
