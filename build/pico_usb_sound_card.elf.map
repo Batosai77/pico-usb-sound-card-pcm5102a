@@ -131,8 +131,6 @@ Discarded input sections
                 0x00000000       0x18 CMakeFiles/pico_usb_sound_card.dir/main.c.o
  .text.led_task
                 0x00000000       0x6c CMakeFiles/pico_usb_sound_card.dir/main.c.o
- .text.tud_audio_rx_done_post_read_cb
-                0x00000000      0x20c CMakeFiles/pico_usb_sound_card.dir/main.c.o
  .text          0x00000000        0x0 CMakeFiles/pico_usb_sound_card.dir/audio_i2s.c.o
  .data          0x00000000        0x0 CMakeFiles/pico_usb_sound_card.dir/audio_i2s.c.o
  .bss           0x00000000        0x0 CMakeFiles/pico_usb_sound_card.dir/audio_i2s.c.o
@@ -999,8 +997,6 @@ Discarded input sections
  .text          0x00000000        0x0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_divider/divider_hardware.S.o
  .data          0x00000000        0x0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_divider/divider_hardware.S.o
  .bss           0x00000000        0x0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_divider/divider_hardware.S.o
- .text.__wrap___aeabi_idiv
-                0x00000000       0x50 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_divider/divider_hardware.S.o
  .text.divmod_s32s32_unsafe
                 0x00000000       0x34 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_divider/divider_hardware.S.o
  .text.divmod_u32u32_unsafe
@@ -1844,8 +1840,14 @@ Discarded input sections
  .text          0x00000000        0x0 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/class/audio/audio_device.c.o
  .data          0x00000000        0x0 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/class/audio/audio_device.c.o
  .bss           0x00000000        0x0 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/class/audio/audio_device.c.o
+ .text.tud_audio_rx_done_isr
+                0x00000000        0x4 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/class/audio/audio_device.c.o
  .text.tud_audio_feedback_params_cb
                 0x00000000        0x8 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/class/audio/audio_device.c.o
+ .text.tud_audio_set_itf_cb
+                0x00000000        0x4 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/class/audio/audio_device.c.o
+ .text.tud_audio_set_itf_close_ep_cb
+                0x00000000        0x4 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/class/audio/audio_device.c.o
  .text.tud_audio_set_req_ep_cb
                 0x00000000        0x4 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/class/audio/audio_device.c.o
  .text.tud_audio_set_req_entity_cb
@@ -1856,10 +1858,6 @@ Discarded input sections
                 0x00000000        0x4 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/class/audio/audio_device.c.o
  .text.tud_audio_n_mounted
                 0x00000000       0x14 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/class/audio/audio_device.c.o
- .text.tud_audio_n_available
-                0x00000000       0x3c CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/class/audio/audio_device.c.o
- .text.tud_audio_n_read
-                0x00000000       0x20 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/class/audio/audio_device.c.o
  .text.tud_audio_n_clear_ep_out_ff
                 0x00000000       0x20 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/class/audio/audio_device.c.o
  .text.tud_audio_n_get_ep_out_ff
@@ -3566,7 +3564,7 @@ END GROUP
                 0x10000100                        __boot2_end__ = .
                 0x00000001                        ASSERT (((__boot2_end__ - __boot2_start__) == 0x100), ERROR: Pico second stage bootloader must be exactly 256 bytes in size for RP2040)
 
-.text           0x10000100     0x4a40
+.text           0x10000100     0x4d70
                 0x10000100                        __logical_binary_start = .
  *(.vectors)
  .vectors       0x10000100       0xd4 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_crt0/crt0.S.o
@@ -3639,456 +3637,469 @@ END GROUP
  .text.tud_resume_cb
                 0x100002ac       0x24 CMakeFiles/pico_usb_sound_card.dir/main.c.o
                 0x100002ac                tud_resume_cb
- .text.tud_audio_feedback_params_cb
-                0x100002d0       0x10 CMakeFiles/pico_usb_sound_card.dir/main.c.o
-                0x100002d0                tud_audio_feedback_params_cb
- .text.tud_audio_set_req_ep_cb
-                0x100002e0       0x38 CMakeFiles/pico_usb_sound_card.dir/main.c.o
-                0x100002e0                tud_audio_set_req_ep_cb
- .text.tud_audio_get_req_ep_cb
-                0x10000318       0x30 CMakeFiles/pico_usb_sound_card.dir/main.c.o
-                0x10000318                tud_audio_get_req_ep_cb
- .text.tud_audio_set_req_entity_cb
-                0x10000348       0x6c CMakeFiles/pico_usb_sound_card.dir/main.c.o
-                0x10000348                tud_audio_set_req_entity_cb
- .text.tud_audio_get_req_entity_cb
-                0x100003b4       0xa8 CMakeFiles/pico_usb_sound_card.dir/main.c.o
-                0x100003b4                tud_audio_get_req_entity_cb
- .text.startup.main
-                0x1000045c      0x158 CMakeFiles/pico_usb_sound_card.dir/main.c.o
-                0x1000045c                main
- .text.audio_i2s_init
-                0x100005b4      0x174 CMakeFiles/pico_usb_sound_card.dir/audio_i2s.c.o
-                0x100005b4                audio_i2s_init
- .text.tud_descriptor_device_cb
-                0x10000728        0x8 CMakeFiles/pico_usb_sound_card.dir/usb_descriptors.c.o
-                0x10000728                tud_descriptor_device_cb
- .text.tud_descriptor_configuration_cb
-                0x10000730        0x8 CMakeFiles/pico_usb_sound_card.dir/usb_descriptors.c.o
-                0x10000730                tud_descriptor_configuration_cb
- .text.tud_descriptor_string_cb
-                0x10000738      0x130 CMakeFiles/pico_usb_sound_card.dir/usb_descriptors.c.o
-                0x10000738                tud_descriptor_string_cb
- .text.gpio_set_function
-                0x10000868       0x34 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.o
-                0x10000868                gpio_set_function
- .text.gpio_init
-                0x1000089c       0x38 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.o
-                0x1000089c                gpio_init
- .text.rp2040_chip_version
-                0x100008d4        0xc CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2040/pico_platform/platform.c.o
-                0x100008d4                rp2040_chip_version
- .text.panic    0x100008e0       0x30 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_platform_panic/panic.c.o
-                0x100008e0                panic
- .text.hw_claim_lock
-                0x10000910       0x18 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/hardware_claim/claim.c.o
-                0x10000910                hw_claim_lock
- .text.hw_claim_unlock
-                0x10000928       0x14 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/hardware_claim/claim.c.o
-                0x10000928                hw_claim_unlock
- .text.hw_claim_or_assert
-                0x1000093c       0x50 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/hardware_claim/claim.c.o
-                0x1000093c                hw_claim_or_assert
- .text.hw_claim_unused_from_range
-                0x1000098c       0x88 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/hardware_claim/claim.c.o
-                0x1000098c                hw_claim_unused_from_range
- .text.next_striped_spin_lock_num
-                0x10000a14       0x18 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_sync/sync.c.o
-                0x10000a14                next_striped_spin_lock_num
- .text.spin_lock_claim_unused
-                0x10000a2c       0x20 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_sync/sync.c.o
-                0x10000a2c                spin_lock_claim_unused
- .text.spin_locks_reset
-                0x10000a4c       0x1c CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_sync_spin_lock/sync_spin_lock.c.o
-                0x10000a4c                spin_locks_reset
- .text.runtime_init_per_core_irq_priorities
-                0x10000a68       0x48 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_irq/irq.c.o
-                0x10000a68                runtime_init_per_core_irq_priorities
- .text.irq_set_enabled
-                0x10000ab0       0x24 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_irq/irq.c.o
-                0x10000ab0                irq_set_enabled
- .text.irq_set_exclusive_handler
-                0x10000ad4       0x54 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_irq/irq.c.o
-                0x10000ad4                irq_set_exclusive_handler
- .text.irq_add_shared_handler
-                0x10000b28      0x1b8 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_irq/irq.c.o
-                0x10000b28                irq_add_shared_handler
- .text.irq_add_tail_to_free_list
-                0x10000ce0       0xb4 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_irq/irq.c.o
-                0x10000ce0                irq_add_tail_to_free_list
- .text.lock_init
-                0x10000d94       0x10 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/pico_sync/lock_core.c.o
-                0x10000d94                lock_init
- .text.runtime_init_mutex
-                0x10000da4       0x5c CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/pico_sync/mutex.c.o
-                0x10000da4                runtime_init_mutex
- .text.mutex_init
-                0x10000e00       0x1c CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/pico_sync/mutex.c.o
-                0x10000e00                mutex_init
- .text.critical_section_init
-                0x10000e1c       0x1c CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/pico_sync/critical_section.c.o
-                0x10000e1c                critical_section_init
- .text.sleep_until_callback
-                0x10000e38        0x8 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/pico_time/time.c.o
- .text.alarm_pool_irq_handler
-                0x10000e40      0x330 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/pico_time/time.c.o
- .text.runtime_init_default_alarm_pool
-                0x10001170       0xcc CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/pico_time/time.c.o
-                0x10001170                runtime_init_default_alarm_pool
- .text.alarm_pool_add_alarm_at_force_in_context
-                0x1000123c       0xbc CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/pico_time/time.c.o
-                0x1000123c                alarm_pool_add_alarm_at_force_in_context
- .text.alarm_pool_cancel_alarm
-                0x100012f8       0x70 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/pico_time/time.c.o
-                0x100012f8                alarm_pool_cancel_alarm
- .text.best_effort_wfe_or_timeout
-                0x10001368       0xec CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/pico_time/time.c.o
-                0x10001368                best_effort_wfe_or_timeout
- .text.timer_hardware_alarm_claim
-                0x10001454       0x14 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_timer/timer.c.o
-                0x10001454                timer_hardware_alarm_claim
- .text.timer_time_us_64
-                0x10001468       0x10 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_timer/timer.c.o
-                0x10001468                timer_time_us_64
- .text.time_us_64
-                0x10001478       0x14 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_timer/timer.c.o
-                0x10001478                time_us_64
- .text.clock_configure_int_divider
-                0x1000148c       0xe4 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.o
-                0x1000148c                clock_configure_int_divider
- .text.clock_configure_undivided
-                0x10001570       0xd8 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.o
-                0x10001570                clock_configure_undivided
- .text.clock_get_hz
-                0x10001648        0xc CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.o
-                0x10001648                clock_get_hz
- .text.pll_init
-                0x10001654       0xac CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_pll/pll.c.o
-                0x10001654                pll_init
- .text.tick_start
-                0x10001700       0x10 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_ticks/ticks.c.o
-                0x10001700                tick_start
- .text.rom_func_lookup
-                0x10001710       0x10 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.o
-                0x10001710                rom_func_lookup
- .text.rom_data_lookup
-                0x10001720       0x10 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.o
-                0x10001720                rom_data_lookup
- .text.rom_funcs_lookup
-                0x10001730       0x44 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.o
-                0x10001730                rom_funcs_lookup
- .text.xosc_init
-                0x10001774       0x28 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_xosc/xosc.c.o
-                0x10001774                xosc_init
- .text.first_per_core_initializer
-                0x1000179c        0x4 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_runtime/runtime.c.o
- .text.hard_assertion_failure
-                0x100017a0        0xc CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_runtime/runtime.c.o
-                0x100017a0                hard_assertion_failure
- .text.runtime_run_initializers
-                0x100017ac       0x28 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_runtime/runtime.c.o
-                0x100017ac                runtime_run_initializers
- .text.runtime_init_early_resets
-                0x100017d4       0x2c CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.o
-                0x100017d4                runtime_init_early_resets
- .text.runtime_init_usb_power_down
-                0x10001800       0x1c CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.o
-                0x10001800                runtime_init_usb_power_down
- .text.runtime_init_post_clock_resets
-                0x1000181c       0x20 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.o
-                0x1000181c                runtime_init_post_clock_resets
- .text.runtime_init_rp2040_gpio_ie_disable
-                0x1000183c       0x14 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.o
-                0x1000183c                runtime_init_rp2040_gpio_ie_disable
- .text.runtime_init_spin_locks_reset
-                0x10001850        0x8 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.o
-                0x10001850                runtime_init_spin_locks_reset
- .text.runtime_init_install_ram_vector_table
-                0x10001858       0xb4 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.o
-                0x10001858                runtime_init_install_ram_vector_table
- .text.runtime_init_clocks
-                0x1000190c       0xd8 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init_clocks.c.o
-                0x1000190c                runtime_init_clocks
- .text          0x100019e4       0x10 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.o
- .text.ctzsi    0x100019f4        0xc CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.o
-                0x100019f4                __wrap___ctzsi2
- .text.__wrap___aeabi_uidiv
-                0x10001a00       0x4c CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_divider/divider_hardware.S.o
-                0x10001a00                __wrap___aeabi_uidiv
-                0x10001a00                __wrap___aeabi_uidivmod
-                0x10001a00                div_u32u32
-                0x10001a00                divmod_u32u32
-                0x10001a30                divmod_u32u32_savestate
- .text.__wrap___aeabi_ldiv
-                0x10001a4c      0x424 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_divider/divider_hardware.S.o
-                0x10001a4c                div_s64s64
-                0x10001a4c                divmod_s64s64
-                0x10001a4c                __wrap___aeabi_ldivmod
-                0x10001a7c                div_u64u64
-                0x10001a7c                divmod_u64u64
-                0x10001a7c                __wrap___aeabi_uldivmod
-                0x10001a8c                divmod_u64u64_savestate
-                0x10001aac                divmod_s64s64_unsafe
-                0x10001b34                divmod_u64u64_unsafe
- .text.__aeabi_double_init
-                0x10001e70       0xa4 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_double/double_init_rom_rp2040.c.o
-                0x10001e70                __aeabi_double_init
- .text.double_table_shim_on_use_helper
-                0x10001f14       0x2c CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.o
-                0x10001f14                double_table_shim_on_use_helper
- .text.__aeabi_lmul
-                0x10001f40       0x32 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.S.o
-                0x10001f40                __wrap___aeabi_lmul
- *fill*         0x10001f72        0x2 
- .text.__wrap___aeabi_farithmetic
-                0x10001f74       0x48 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_float/float_aeabi_rp2040.S.o
-                0x10001f74                __wrap___aeabi_frsub
-                0x10001f7a                __wrap___aeabi_fsub
-                0x10001f80                __wrap___aeabi_fadd
-                0x10001f86                __wrap___aeabi_fdiv
-                0x10001fae                __wrap___aeabi_fmul
- .text.__wrap___aeabi_ui2f
-                0x10001fbc        0xa CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_float/float_aeabi_rp2040.S.o
-                0x10001fbc                uint2float
-                0x10001fbc                __wrap___aeabi_ui2f
- *fill*         0x10001fc6        0x2 
- .text.__wrap___aeabi_i2f
-                0x10001fc8       0x44 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_float/float_aeabi_rp2040.S.o
-                0x10001fc8                int2float
-                0x10001fc8                __wrap___aeabi_i2f
- .text.__wrap___aeabi_f2uiz
-                0x1000200c        0xc CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_float/float_aeabi_rp2040.S.o
-                0x1000200c                float2uint
-                0x1000200c                float2uint_z
-                0x1000200c                __wrap___aeabi_f2uiz
- .text.__aeabi_float_init
-                0x10002018       0x68 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_float/float_init_rom_rp2040.c.o
-                0x10002018                __aeabi_float_init
- .text.float_table_shim_on_use_helper
-                0x10002080       0x2c CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_float/float_v1_rom_shim_rp2040.S.o
-                0x10002080                float_table_shim_on_use_helper
- .text          0x100020ac       0x10 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.o
-                0x100020ac                __aeabi_mem_init
- .text.memset   0x100020bc        0xc CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.o
-                0x100020bc                __wrap_memset
- .text.memcpy   0x100020c8        0xc CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.o
-                0x100020c8                __wrap___aeabi_memcpy
-                0x100020c8                __wrap_memcpy
- .text._out_char
-                0x100020d4       0x10 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_printf/printf.c.o
- .text.weak_raw_vprintf
-                0x100020e4       0x30 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_printf/printf.c.o
-                0x100020e4                weak_raw_vprintf
- .text._exit    0x10002114        0x4 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_clib_interface/newlib_interface.c.o
-                0x10002114                _exit
- .text._fini    0x10002118        0x4 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_clib_interface/newlib_interface.c.o
-                0x10002118                _fini
- .text.exit     0x1000211c        0x8 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_clib_interface/newlib_interface.c.o
-                0x1000211c                exit
- .text.runtime_init
-                0x10002124       0x2c CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_clib_interface/newlib_interface.c.o
-                0x10002124                runtime_init
- .text.stdio_out_chars_no_crlf
-                0x10002150       0x10 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_stdio/stdio.c.o
- .text.stdio_out_chars_crlf
-                0x10002160       0x90 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_stdio/stdio.c.o
- .text.stdio_put_string
-                0x100021f0       0xf4 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_stdio/stdio.c.o
-                0x100021f0                stdio_put_string
- .text.stdio_init_all
-                0x100022e4        0x4 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_stdio/stdio.c.o
-                0x100022e4                stdio_init_all
- .text.__wrap_putchar
-                0x100022e8       0x94 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_stdio/stdio.c.o
-                0x100022e8                stdio_putchar
-                0x100022e8                __wrap_putchar
- .text.__wrap_puts
-                0x1000237c       0x3c CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_stdio/stdio.c.o
-                0x1000237c                __wrap_puts
-                0x1000237c                stdio_puts
- .text.startup._retrieve_unique_id_on_boot
-                0x100023b8       0x10 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c.o
- .text.pico_get_unique_board_id_string
-                0x100023c8      0x1e0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c.o
-                0x100023c8                pico_get_unique_board_id_string
- .text.flash_get_unique_id
-                0x100025a8       0x3c CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_flash/flash.c.o
-                0x100025a8                flash_get_unique_id
- .text.dcd_init
-                0x100025e4       0x7c CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.o
-                0x100025e4                dcd_init
- .text.dcd_int_enable
-                0x10002660        0xc CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.o
-                0x10002660                dcd_int_enable
- .text.dcd_set_address
-                0x1000266c       0x20 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.o
-                0x1000266c                dcd_set_address
- .text.dcd_sof_enable
-                0x1000268c       0x1c CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.o
-                0x1000268c                dcd_sof_enable
- .text.dcd_edpt0_status_complete
-                0x100026a8       0x1c CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.o
-                0x100026a8                dcd_edpt0_status_complete
- .text.dcd_edpt_iso_alloc
-                0x100026c4       0xbc CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.o
-                0x100026c4                dcd_edpt_iso_alloc
- .text.dcd_edpt_iso_activate
-                0x10002780      0x128 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.o
-                0x10002780                dcd_edpt_iso_activate
- .text.dcd_edpt_close_all
-                0x100028a8        0x8 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.o
-                0x100028a8                dcd_edpt_close_all
- .text.dcd_edpt_xfer
-                0x100028b0       0x74 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.o
-                0x100028b0                dcd_edpt_xfer
- .text.dcd_edpt_stall
-                0x10002924       0xc4 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.o
-                0x10002924                dcd_edpt_stall
- .text.dcd_edpt_clear_stall
-                0x100029e8       0x4c CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.o
-                0x100029e8                dcd_edpt_clear_stall
- .text.rp2usb_init
-                0x10002a34       0x58 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.o
-                0x10002a34                rp2usb_init
- .text.rp2usb_xfer_start
-                0x10002a8c       0xdc CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.o
-                0x10002a8c                rp2usb_xfer_start
- .text.tud_vendor_control_xfer_cb
-                0x10002b68        0x4 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/device/usbd.c.o
-                0x10002b68                tud_vendor_control_xfer_cb
- .text.tud_event_hook_cb
-                0x10002b6c        0x4 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/device/usbd.c.o
-                0x10002b6c                tud_event_hook_cb
- .text.tud_sof_cb
-                0x10002b70        0x4 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/device/usbd.c.o
-                0x10002b70                tud_sof_cb
- .text.tud_descriptor_bos_cb
-                0x10002b74        0x4 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/device/usbd.c.o
-                0x10002b74                tud_descriptor_bos_cb
- .text.tud_descriptor_device_qualifier_cb
-                0x10002b78        0x4 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/device/usbd.c.o
-                0x10002b78                tud_descriptor_device_qualifier_cb
- .text.tud_descriptor_other_speed_configuration_cb
-                0x10002b7c        0x4 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/device/usbd.c.o
-                0x10002b7c                tud_descriptor_other_speed_configuration_cb
- .text.usbd_app_driver_get_cb
-                0x10002b80        0x8 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/device/usbd.c.o
-                0x10002b80                usbd_app_driver_get_cb
- .text.tud_speed_get
-                0x10002b88        0xc CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/device/usbd.c.o
-                0x10002b88                tud_speed_get
- .text.tud_mounted
-                0x10002b94       0x10 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/device/usbd.c.o
-                0x10002b94                tud_mounted
- .text.tud_rhport_init
-                0x10002ba4       0xf4 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/device/usbd.c.o
-                0x10002ba4                tud_rhport_init
- .text.usbd_get_ctrl_buf
-                0x10002c98        0x8 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/device/usbd.c.o
-                0x10002c98                usbd_get_ctrl_buf
- .text.tud_control_status
-                0x10002ca0       0x5c CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/device/usbd.c.o
-                0x10002ca0                tud_control_status
- .text.tud_control_xfer
-                0x10002cfc      0x108 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/device/usbd.c.o
-                0x10002cfc                tud_control_xfer
- .text.tud_task_ext
-                0x10002e04      0x900 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/device/usbd.c.o
-                0x10002e04                tud_task_ext
- .text.usbd_edpt_xfer
-                0x10003704       0x50 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/device/usbd.c.o
-                0x10003704                usbd_edpt_xfer
- .text.usbd_edpt_clear_stall
-                0x10003754       0x30 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/device/usbd.c.o
-                0x10003754                usbd_edpt_clear_stall
- .text.usbd_sof_enable
-                0x10003784       0x4c CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/device/usbd.c.o
-                0x10003784                usbd_sof_enable
- .text.usbd_edpt_iso_alloc
-                0x100037d0       0x10 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/device/usbd.c.o
-                0x100037d0                usbd_edpt_iso_alloc
- .text.usbd_edpt_iso_activate
-                0x100037e0       0x44 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/device/usbd.c.o
-                0x100037e0                usbd_edpt_iso_activate
- .text.tud_audio_rx_done_isr
-                0x10003824        0x4 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/class/audio/audio_device.c.o
-                0x10003824                tud_audio_rx_done_isr
- .text.audiod_fb_params_prepare
-                0x10003828      0x1bc CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/class/audio/audio_device.c.o
  .text.tud_audio_set_itf_cb
-                0x100039e4        0x4 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/class/audio/audio_device.c.o
-                0x100039e4                tud_audio_set_itf_cb
+                0x100002d0       0x1c CMakeFiles/pico_usb_sound_card.dir/main.c.o
+                0x100002d0                tud_audio_set_itf_cb
  .text.tud_audio_set_itf_close_ep_cb
-                0x100039e8        0x4 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/class/audio/audio_device.c.o
-                0x100039e8                tud_audio_set_itf_close_ep_cb
+                0x100002ec       0x20 CMakeFiles/pico_usb_sound_card.dir/main.c.o
+                0x100002ec                tud_audio_set_itf_close_ep_cb
+ .text.tud_audio_feedback_params_cb
+                0x1000030c       0x10 CMakeFiles/pico_usb_sound_card.dir/main.c.o
+                0x1000030c                tud_audio_feedback_params_cb
+ .text.tud_audio_rx_done_isr
+                0x1000031c        0x4 CMakeFiles/pico_usb_sound_card.dir/main.c.o
+                0x1000031c                tud_audio_rx_done_isr
+ .text.tud_audio_set_req_ep_cb
+                0x10000320       0x38 CMakeFiles/pico_usb_sound_card.dir/main.c.o
+                0x10000320                tud_audio_set_req_ep_cb
+ .text.tud_audio_get_req_ep_cb
+                0x10000358       0x30 CMakeFiles/pico_usb_sound_card.dir/main.c.o
+                0x10000358                tud_audio_get_req_ep_cb
+ .text.tud_audio_set_req_entity_cb
+                0x10000388       0x6c CMakeFiles/pico_usb_sound_card.dir/main.c.o
+                0x10000388                tud_audio_set_req_entity_cb
+ .text.tud_audio_get_req_entity_cb
+                0x100003f4       0xa8 CMakeFiles/pico_usb_sound_card.dir/main.c.o
+                0x100003f4                tud_audio_get_req_entity_cb
+ .text.startup.main
+                0x1000049c      0x3a8 CMakeFiles/pico_usb_sound_card.dir/main.c.o
+                0x1000049c                main
+ .text.audio_i2s_init
+                0x10000844      0x174 CMakeFiles/pico_usb_sound_card.dir/audio_i2s.c.o
+                0x10000844                audio_i2s_init
+ .text.tud_descriptor_device_cb
+                0x100009b8        0x8 CMakeFiles/pico_usb_sound_card.dir/usb_descriptors.c.o
+                0x100009b8                tud_descriptor_device_cb
+ .text.tud_descriptor_configuration_cb
+                0x100009c0        0x8 CMakeFiles/pico_usb_sound_card.dir/usb_descriptors.c.o
+                0x100009c0                tud_descriptor_configuration_cb
+ .text.tud_descriptor_string_cb
+                0x100009c8      0x130 CMakeFiles/pico_usb_sound_card.dir/usb_descriptors.c.o
+                0x100009c8                tud_descriptor_string_cb
+ .text.gpio_set_function
+                0x10000af8       0x34 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.o
+                0x10000af8                gpio_set_function
+ .text.gpio_init
+                0x10000b2c       0x38 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.o
+                0x10000b2c                gpio_init
+ .text.rp2040_chip_version
+                0x10000b64        0xc CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2040/pico_platform/platform.c.o
+                0x10000b64                rp2040_chip_version
+ .text.panic    0x10000b70       0x30 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_platform_panic/panic.c.o
+                0x10000b70                panic
+ .text.hw_claim_lock
+                0x10000ba0       0x18 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/hardware_claim/claim.c.o
+                0x10000ba0                hw_claim_lock
+ .text.hw_claim_unlock
+                0x10000bb8       0x14 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/hardware_claim/claim.c.o
+                0x10000bb8                hw_claim_unlock
+ .text.hw_claim_or_assert
+                0x10000bcc       0x50 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/hardware_claim/claim.c.o
+                0x10000bcc                hw_claim_or_assert
+ .text.hw_claim_unused_from_range
+                0x10000c1c       0x88 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/hardware_claim/claim.c.o
+                0x10000c1c                hw_claim_unused_from_range
+ .text.next_striped_spin_lock_num
+                0x10000ca4       0x18 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_sync/sync.c.o
+                0x10000ca4                next_striped_spin_lock_num
+ .text.spin_lock_claim_unused
+                0x10000cbc       0x20 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_sync/sync.c.o
+                0x10000cbc                spin_lock_claim_unused
+ .text.spin_locks_reset
+                0x10000cdc       0x1c CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_sync_spin_lock/sync_spin_lock.c.o
+                0x10000cdc                spin_locks_reset
+ .text.runtime_init_per_core_irq_priorities
+                0x10000cf8       0x48 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_irq/irq.c.o
+                0x10000cf8                runtime_init_per_core_irq_priorities
+ .text.irq_set_enabled
+                0x10000d40       0x24 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_irq/irq.c.o
+                0x10000d40                irq_set_enabled
+ .text.irq_set_exclusive_handler
+                0x10000d64       0x54 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_irq/irq.c.o
+                0x10000d64                irq_set_exclusive_handler
+ .text.irq_add_shared_handler
+                0x10000db8      0x1b8 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_irq/irq.c.o
+                0x10000db8                irq_add_shared_handler
+ .text.irq_add_tail_to_free_list
+                0x10000f70       0xb4 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_irq/irq.c.o
+                0x10000f70                irq_add_tail_to_free_list
+ .text.lock_init
+                0x10001024       0x10 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/pico_sync/lock_core.c.o
+                0x10001024                lock_init
+ .text.runtime_init_mutex
+                0x10001034       0x5c CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/pico_sync/mutex.c.o
+                0x10001034                runtime_init_mutex
+ .text.mutex_init
+                0x10001090       0x1c CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/pico_sync/mutex.c.o
+                0x10001090                mutex_init
+ .text.critical_section_init
+                0x100010ac       0x1c CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/pico_sync/critical_section.c.o
+                0x100010ac                critical_section_init
+ .text.sleep_until_callback
+                0x100010c8        0x8 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/pico_time/time.c.o
+ .text.alarm_pool_irq_handler
+                0x100010d0      0x330 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/pico_time/time.c.o
+ .text.runtime_init_default_alarm_pool
+                0x10001400       0xcc CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/pico_time/time.c.o
+                0x10001400                runtime_init_default_alarm_pool
+ .text.alarm_pool_add_alarm_at_force_in_context
+                0x100014cc       0xbc CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/pico_time/time.c.o
+                0x100014cc                alarm_pool_add_alarm_at_force_in_context
+ .text.alarm_pool_cancel_alarm
+                0x10001588       0x70 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/pico_time/time.c.o
+                0x10001588                alarm_pool_cancel_alarm
+ .text.best_effort_wfe_or_timeout
+                0x100015f8       0xec CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/pico_time/time.c.o
+                0x100015f8                best_effort_wfe_or_timeout
+ .text.timer_hardware_alarm_claim
+                0x100016e4       0x14 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_timer/timer.c.o
+                0x100016e4                timer_hardware_alarm_claim
+ .text.timer_time_us_64
+                0x100016f8       0x10 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_timer/timer.c.o
+                0x100016f8                timer_time_us_64
+ .text.time_us_64
+                0x10001708       0x14 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_timer/timer.c.o
+                0x10001708                time_us_64
+ .text.clock_configure_int_divider
+                0x1000171c       0xe4 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.o
+                0x1000171c                clock_configure_int_divider
+ .text.clock_configure_undivided
+                0x10001800       0xd8 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.o
+                0x10001800                clock_configure_undivided
+ .text.clock_get_hz
+                0x100018d8        0xc CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.o
+                0x100018d8                clock_get_hz
+ .text.pll_init
+                0x100018e4       0xac CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_pll/pll.c.o
+                0x100018e4                pll_init
+ .text.tick_start
+                0x10001990       0x10 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_ticks/ticks.c.o
+                0x10001990                tick_start
+ .text.rom_func_lookup
+                0x100019a0       0x10 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.o
+                0x100019a0                rom_func_lookup
+ .text.rom_data_lookup
+                0x100019b0       0x10 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.o
+                0x100019b0                rom_data_lookup
+ .text.rom_funcs_lookup
+                0x100019c0       0x44 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.o
+                0x100019c0                rom_funcs_lookup
+ .text.xosc_init
+                0x10001a04       0x28 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_xosc/xosc.c.o
+                0x10001a04                xosc_init
+ .text.first_per_core_initializer
+                0x10001a2c        0x4 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_runtime/runtime.c.o
+ .text.hard_assertion_failure
+                0x10001a30        0xc CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_runtime/runtime.c.o
+                0x10001a30                hard_assertion_failure
+ .text.runtime_run_initializers
+                0x10001a3c       0x28 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_runtime/runtime.c.o
+                0x10001a3c                runtime_run_initializers
+ .text.runtime_init_early_resets
+                0x10001a64       0x2c CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.o
+                0x10001a64                runtime_init_early_resets
+ .text.runtime_init_usb_power_down
+                0x10001a90       0x1c CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.o
+                0x10001a90                runtime_init_usb_power_down
+ .text.runtime_init_post_clock_resets
+                0x10001aac       0x20 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.o
+                0x10001aac                runtime_init_post_clock_resets
+ .text.runtime_init_rp2040_gpio_ie_disable
+                0x10001acc       0x14 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.o
+                0x10001acc                runtime_init_rp2040_gpio_ie_disable
+ .text.runtime_init_spin_locks_reset
+                0x10001ae0        0x8 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.o
+                0x10001ae0                runtime_init_spin_locks_reset
+ .text.runtime_init_install_ram_vector_table
+                0x10001ae8       0xb4 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.o
+                0x10001ae8                runtime_init_install_ram_vector_table
+ .text.runtime_init_clocks
+                0x10001b9c       0xd8 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init_clocks.c.o
+                0x10001b9c                runtime_init_clocks
+ .text          0x10001c74       0x10 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.o
+ .text.ctzsi    0x10001c84        0xc CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.o
+                0x10001c84                __wrap___ctzsi2
+ .text.__wrap___aeabi_idiv
+                0x10001c90       0x50 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_divider/divider_hardware.S.o
+                0x10001c90                __wrap___aeabi_idivmod
+                0x10001c90                divmod_s32s32
+                0x10001c90                div_s32s32
+                0x10001c90                __wrap___aeabi_idiv
+                0x10001cc4                divmod_s32s32_savestate
+ .text.__wrap___aeabi_uidiv
+                0x10001ce0       0x4c CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_divider/divider_hardware.S.o
+                0x10001ce0                __wrap___aeabi_uidiv
+                0x10001ce0                __wrap___aeabi_uidivmod
+                0x10001ce0                div_u32u32
+                0x10001ce0                divmod_u32u32
+                0x10001d10                divmod_u32u32_savestate
+ .text.__wrap___aeabi_ldiv
+                0x10001d2c      0x424 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_divider/divider_hardware.S.o
+                0x10001d2c                div_s64s64
+                0x10001d2c                divmod_s64s64
+                0x10001d2c                __wrap___aeabi_ldivmod
+                0x10001d5c                div_u64u64
+                0x10001d5c                divmod_u64u64
+                0x10001d5c                __wrap___aeabi_uldivmod
+                0x10001d6c                divmod_u64u64_savestate
+                0x10001d8c                divmod_s64s64_unsafe
+                0x10001e14                divmod_u64u64_unsafe
+ .text.__aeabi_double_init
+                0x10002150       0xa4 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_double/double_init_rom_rp2040.c.o
+                0x10002150                __aeabi_double_init
+ .text.double_table_shim_on_use_helper
+                0x100021f4       0x2c CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.o
+                0x100021f4                double_table_shim_on_use_helper
+ .text.__aeabi_lmul
+                0x10002220       0x32 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.S.o
+                0x10002220                __wrap___aeabi_lmul
+ *fill*         0x10002252        0x2 
+ .text.__wrap___aeabi_farithmetic
+                0x10002254       0x48 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_float/float_aeabi_rp2040.S.o
+                0x10002254                __wrap___aeabi_frsub
+                0x1000225a                __wrap___aeabi_fsub
+                0x10002260                __wrap___aeabi_fadd
+                0x10002266                __wrap___aeabi_fdiv
+                0x1000228e                __wrap___aeabi_fmul
+ .text.__wrap___aeabi_ui2f
+                0x1000229c        0xa CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_float/float_aeabi_rp2040.S.o
+                0x1000229c                uint2float
+                0x1000229c                __wrap___aeabi_ui2f
+ *fill*         0x100022a6        0x2 
+ .text.__wrap___aeabi_i2f
+                0x100022a8       0x44 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_float/float_aeabi_rp2040.S.o
+                0x100022a8                int2float
+                0x100022a8                __wrap___aeabi_i2f
+ .text.__wrap___aeabi_f2uiz
+                0x100022ec        0xc CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_float/float_aeabi_rp2040.S.o
+                0x100022ec                float2uint
+                0x100022ec                float2uint_z
+                0x100022ec                __wrap___aeabi_f2uiz
+ .text.__aeabi_float_init
+                0x100022f8       0x68 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_float/float_init_rom_rp2040.c.o
+                0x100022f8                __aeabi_float_init
+ .text.float_table_shim_on_use_helper
+                0x10002360       0x2c CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_float/float_v1_rom_shim_rp2040.S.o
+                0x10002360                float_table_shim_on_use_helper
+ .text          0x1000238c       0x10 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.o
+                0x1000238c                __aeabi_mem_init
+ .text.memset   0x1000239c        0xc CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.o
+                0x1000239c                __wrap_memset
+ .text.memcpy   0x100023a8        0xc CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.o
+                0x100023a8                __wrap___aeabi_memcpy
+                0x100023a8                __wrap_memcpy
+ .text._out_char
+                0x100023b4       0x10 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_printf/printf.c.o
+ .text.weak_raw_vprintf
+                0x100023c4       0x30 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_printf/printf.c.o
+                0x100023c4                weak_raw_vprintf
+ .text._exit    0x100023f4        0x4 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_clib_interface/newlib_interface.c.o
+                0x100023f4                _exit
+ .text._fini    0x100023f8        0x4 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_clib_interface/newlib_interface.c.o
+                0x100023f8                _fini
+ .text.exit     0x100023fc        0x8 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_clib_interface/newlib_interface.c.o
+                0x100023fc                exit
+ .text.runtime_init
+                0x10002404       0x2c CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_clib_interface/newlib_interface.c.o
+                0x10002404                runtime_init
+ .text.stdio_out_chars_no_crlf
+                0x10002430       0x10 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_stdio/stdio.c.o
+ .text.stdio_out_chars_crlf
+                0x10002440       0x90 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_stdio/stdio.c.o
+ .text.stdio_put_string
+                0x100024d0       0xf4 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_stdio/stdio.c.o
+                0x100024d0                stdio_put_string
+ .text.stdio_init_all
+                0x100025c4        0x4 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_stdio/stdio.c.o
+                0x100025c4                stdio_init_all
+ .text.__wrap_putchar
+                0x100025c8       0x94 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_stdio/stdio.c.o
+                0x100025c8                stdio_putchar
+                0x100025c8                __wrap_putchar
+ .text.__wrap_puts
+                0x1000265c       0x3c CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_stdio/stdio.c.o
+                0x1000265c                __wrap_puts
+                0x1000265c                stdio_puts
+ .text.startup._retrieve_unique_id_on_boot
+                0x10002698       0x10 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c.o
+ .text.pico_get_unique_board_id_string
+                0x100026a8      0x1e0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c.o
+                0x100026a8                pico_get_unique_board_id_string
+ .text.flash_get_unique_id
+                0x10002888       0x3c CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_flash/flash.c.o
+                0x10002888                flash_get_unique_id
+ .text.dcd_init
+                0x100028c4       0x7c CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.o
+                0x100028c4                dcd_init
+ .text.dcd_int_enable
+                0x10002940        0xc CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.o
+                0x10002940                dcd_int_enable
+ .text.dcd_set_address
+                0x1000294c       0x20 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.o
+                0x1000294c                dcd_set_address
+ .text.dcd_sof_enable
+                0x1000296c       0x1c CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.o
+                0x1000296c                dcd_sof_enable
+ .text.dcd_edpt0_status_complete
+                0x10002988       0x1c CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.o
+                0x10002988                dcd_edpt0_status_complete
+ .text.dcd_edpt_iso_alloc
+                0x100029a4       0xbc CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.o
+                0x100029a4                dcd_edpt_iso_alloc
+ .text.dcd_edpt_iso_activate
+                0x10002a60      0x128 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.o
+                0x10002a60                dcd_edpt_iso_activate
+ .text.dcd_edpt_close_all
+                0x10002b88        0x8 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.o
+                0x10002b88                dcd_edpt_close_all
+ .text.dcd_edpt_xfer
+                0x10002b90       0x74 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.o
+                0x10002b90                dcd_edpt_xfer
+ .text.dcd_edpt_stall
+                0x10002c04       0xc4 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.o
+                0x10002c04                dcd_edpt_stall
+ .text.dcd_edpt_clear_stall
+                0x10002cc8       0x4c CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.o
+                0x10002cc8                dcd_edpt_clear_stall
+ .text.rp2usb_init
+                0x10002d14       0x58 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.o
+                0x10002d14                rp2usb_init
+ .text.rp2usb_xfer_start
+                0x10002d6c       0xdc CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.o
+                0x10002d6c                rp2usb_xfer_start
+ .text.tud_vendor_control_xfer_cb
+                0x10002e48        0x4 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/device/usbd.c.o
+                0x10002e48                tud_vendor_control_xfer_cb
+ .text.tud_event_hook_cb
+                0x10002e4c        0x4 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/device/usbd.c.o
+                0x10002e4c                tud_event_hook_cb
+ .text.tud_sof_cb
+                0x10002e50        0x4 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/device/usbd.c.o
+                0x10002e50                tud_sof_cb
+ .text.tud_descriptor_bos_cb
+                0x10002e54        0x4 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/device/usbd.c.o
+                0x10002e54                tud_descriptor_bos_cb
+ .text.tud_descriptor_device_qualifier_cb
+                0x10002e58        0x4 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/device/usbd.c.o
+                0x10002e58                tud_descriptor_device_qualifier_cb
+ .text.tud_descriptor_other_speed_configuration_cb
+                0x10002e5c        0x4 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/device/usbd.c.o
+                0x10002e5c                tud_descriptor_other_speed_configuration_cb
+ .text.usbd_app_driver_get_cb
+                0x10002e60        0x8 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/device/usbd.c.o
+                0x10002e60                usbd_app_driver_get_cb
+ .text.tud_speed_get
+                0x10002e68        0xc CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/device/usbd.c.o
+                0x10002e68                tud_speed_get
+ .text.tud_mounted
+                0x10002e74       0x10 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/device/usbd.c.o
+                0x10002e74                tud_mounted
+ .text.tud_rhport_init
+                0x10002e84       0xf4 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/device/usbd.c.o
+                0x10002e84                tud_rhport_init
+ .text.usbd_get_ctrl_buf
+                0x10002f78        0x8 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/device/usbd.c.o
+                0x10002f78                usbd_get_ctrl_buf
+ .text.tud_control_status
+                0x10002f80       0x5c CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/device/usbd.c.o
+                0x10002f80                tud_control_status
+ .text.tud_control_xfer
+                0x10002fdc      0x108 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/device/usbd.c.o
+                0x10002fdc                tud_control_xfer
+ .text.tud_task_ext
+                0x100030e4      0x900 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/device/usbd.c.o
+                0x100030e4                tud_task_ext
+ .text.usbd_edpt_xfer
+                0x100039e4       0x50 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/device/usbd.c.o
+                0x100039e4                usbd_edpt_xfer
+ .text.usbd_edpt_clear_stall
+                0x10003a34       0x30 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/device/usbd.c.o
+                0x10003a34                usbd_edpt_clear_stall
+ .text.usbd_sof_enable
+                0x10003a64       0x4c CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/device/usbd.c.o
+                0x10003a64                usbd_sof_enable
+ .text.usbd_edpt_iso_alloc
+                0x10003ab0       0x10 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/device/usbd.c.o
+                0x10003ab0                usbd_edpt_iso_alloc
+ .text.usbd_edpt_iso_activate
+                0x10003ac0       0x44 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/device/usbd.c.o
+                0x10003ac0                usbd_edpt_iso_activate
+ .text.audiod_fb_params_prepare
+                0x10003b04      0x1bc CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/class/audio/audio_device.c.o
  .text.tud_audio_set_req_itf_cb
-                0x100039ec        0x4 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/class/audio/audio_device.c.o
-                0x100039ec                tud_audio_set_req_itf_cb
+                0x10003cc0        0x4 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/class/audio/audio_device.c.o
+                0x10003cc0                tud_audio_set_req_itf_cb
  .text.tud_audio_get_req_itf_cb
-                0x100039f0        0x4 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/class/audio/audio_device.c.o
-                0x100039f0                tud_audio_get_req_itf_cb
+                0x10003cc4        0x4 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/class/audio/audio_device.c.o
+                0x10003cc4                tud_audio_get_req_itf_cb
+ .text.tud_audio_n_available
+                0x10003cc8       0x3c CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/class/audio/audio_device.c.o
+                0x10003cc8                tud_audio_n_available
+ .text.tud_audio_n_read
+                0x10003d04       0x20 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/class/audio/audio_device.c.o
+                0x10003d04                tud_audio_n_read
  .text.audiod_init
-                0x100039f4       0x38 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/class/audio/audio_device.c.o
-                0x100039f4                audiod_init
+                0x10003d24       0x38 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/class/audio/audio_device.c.o
+                0x10003d24                audiod_init
  .text.audiod_deinit
-                0x10003a2c        0x4 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/class/audio/audio_device.c.o
-                0x10003a2c                audiod_deinit
+                0x10003d5c        0x4 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/class/audio/audio_device.c.o
+                0x10003d5c                audiod_deinit
  .text.audiod_reset
-                0x10003a30       0x1c CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/class/audio/audio_device.c.o
-                0x10003a30                audiod_reset
+                0x10003d60       0x1c CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/class/audio/audio_device.c.o
+                0x10003d60                audiod_reset
  .text.audiod_open
-                0x10003a4c      0x198 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/class/audio/audio_device.c.o
-                0x10003a4c                audiod_open
+                0x10003d7c      0x198 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/class/audio/audio_device.c.o
+                0x10003d7c                audiod_open
  .text.audiod_control_xfer_cb
-                0x10003be4      0x540 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/class/audio/audio_device.c.o
-                0x10003be4                audiod_control_xfer_cb
+                0x10003f14      0x540 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/class/audio/audio_device.c.o
+                0x10003f14                audiod_control_xfer_cb
  .text.audiod_xfer_cb
-                0x10004124        0x4 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/class/audio/audio_device.c.o
-                0x10004124                audiod_xfer_cb
+                0x10004454        0x4 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/class/audio/audio_device.c.o
+                0x10004454                audiod_xfer_cb
  .text.audiod_xfer_isr
-                0x10004128      0x124 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/class/audio/audio_device.c.o
-                0x10004128                audiod_xfer_isr
+                0x10004458      0x124 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/class/audio/audio_device.c.o
+                0x10004458                audiod_xfer_isr
  .text.tud_audio_buffer_and_schedule_control_xfer
-                0x1000424c       0xf0 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/class/audio/audio_device.c.o
-                0x1000424c                tud_audio_buffer_and_schedule_control_xfer
+                0x1000457c       0xf0 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/class/audio/audio_device.c.o
+                0x1000457c                tud_audio_buffer_and_schedule_control_xfer
  .text.tusb_rhport_init
-                0x1000433c       0x4c CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/tusb.c.o
-                0x1000433c                tusb_rhport_init
+                0x1000466c       0x4c CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/tusb.c.o
+                0x1000466c                tusb_rhport_init
  .text.tu_bind_driver_to_ep_itf
-                0x10004388       0x60 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/tusb.c.o
-                0x10004388                tu_bind_driver_to_ep_itf
+                0x100046b8       0x60 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/tusb.c.o
+                0x100046b8                tu_bind_driver_to_ep_itf
  .text.tu_fifo_config
-                0x100043e8       0x58 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/common/tusb_fifo.c.o
-                0x100043e8                tu_fifo_config
+                0x10004718       0x58 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/common/tusb_fifo.c.o
+                0x10004718                tu_fifo_config
  .text.tu_fifo_clear
-                0x10004440       0x3c CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/common/tusb_fifo.c.o
-                0x10004440                tu_fifo_clear
+                0x10004770       0x3c CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/common/tusb_fifo.c.o
+                0x10004770                tu_fifo_clear
  .text.tu_fifo_read_n_access_mode
-                0x1000447c       0xc8 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/common/tusb_fifo.c.o
-                0x1000447c                tu_fifo_read_n_access_mode
+                0x100047ac       0xc8 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/common/tusb_fifo.c.o
+                0x100047ac                tu_fifo_read_n_access_mode
  .text.tu_fifo_write_n_access_mode
-                0x10004544      0x150 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/common/tusb_fifo.c.o
-                0x10004544                tu_fifo_write_n_access_mode
+                0x10004874      0x150 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/common/tusb_fifo.c.o
+                0x10004874                tu_fifo_write_n_access_mode
  .text.pio_can_add_program
-                0x10004694       0x74 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_pio/pio.c.o
-                0x10004694                pio_can_add_program
+                0x100049c4       0x74 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_pio/pio.c.o
+                0x100049c4                pio_can_add_program
  .text.pio_add_program
-                0x10004708       0xec CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_pio/pio.c.o
-                0x10004708                pio_add_program
+                0x10004a38       0xec CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_pio/pio.c.o
+                0x10004a38                pio_add_program
  .text.pio_sm_set_pins
-                0x100047f4       0x90 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_pio/pio.c.o
-                0x100047f4                pio_sm_set_pins
+                0x10004b24       0x90 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_pio/pio.c.o
+                0x10004b24                pio_sm_set_pins
  .text.pio_sm_set_pindirs_with_mask
-                0x10004884       0xa8 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_pio/pio.c.o
-                0x10004884                pio_sm_set_pindirs_with_mask
+                0x10004bb4       0xa8 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_pio/pio.c.o
+                0x10004bb4                pio_sm_set_pindirs_with_mask
  .text.pio_sm_init
-                0x1000492c       0xc0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_pio/pio.c.o
-                0x1000492c                pio_sm_init
- .text.strlen   0x100049ec       0x60 /usr/lib/gcc/arm-none-eabi/16.2.0/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libg.a(libc_a-strlen-stub.o)
-                0x100049ec                strlen
- *fill*         0x10004a4c        0x4 
+                0x10004c5c       0xc0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_pio/pio.c.o
+                0x10004c5c                pio_sm_init
+ .text.strlen   0x10004d1c       0x60 /usr/lib/gcc/arm-none-eabi/16.2.0/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libg.a(libc_a-strlen-stub.o)
+                0x10004d1c                strlen
+ *fill*         0x10004d7c        0x4 
  .text.strlen.__stub
-                0x10004a50       0xb0 linker stubs
+                0x10004d80       0xb0 linker stubs
  *(.fini)
  *crtbegin.o(.ctors)
  *crtbegin?.o(.ctors)
@@ -4100,198 +4111,198 @@ END GROUP
  *(EXCLUDE_FILE(*crtend.o *crtend?.o) .dtors)
  *(SORT_BY_NAME(.dtors.*))
  *(.dtors)
-                0x10004b00                        . = ALIGN (0x4)
+                0x10004e30                        . = ALIGN (0x4)
                 [!provide]                        PROVIDE (__bothinit_array_start = .)
-                0x10004b00                        PROVIDE (__preinit_array_start = .)
+                0x10004e30                        PROVIDE (__preinit_array_start = .)
  *(SORT_BY_NAME(.preinit_array.*))
  .preinit_array.00100
-                0x10004b00        0x4 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.o
-                0x10004b00                __pre_init_runtime_init_early_resets
+                0x10004e30        0x4 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.o
+                0x10004e30                __pre_init_runtime_init_early_resets
  .preinit_array.00101
-                0x10004b04        0x4 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.o
-                0x10004b04                __pre_init_runtime_init_usb_power_down
+                0x10004e34        0x4 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.o
+                0x10004e34                __pre_init_runtime_init_usb_power_down
  .preinit_array.00275
-                0x10004b08        0x4 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.o
+                0x10004e38        0x4 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.o
  .preinit_array.00300
-                0x10004b0c        0x4 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.o
+                0x10004e3c        0x4 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.o
  .preinit_array.00350
-                0x10004b10        0x4 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_double/double_aeabi_rp2040.S.o
+                0x10004e40        0x4 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_double/double_aeabi_rp2040.S.o
  .preinit_array.00350
-                0x10004b14        0x4 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_float/float_aeabi_rp2040.S.o
+                0x10004e44        0x4 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_float/float_aeabi_rp2040.S.o
  .preinit_array.00500
-                0x10004b18        0x4 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.o
-                0x10004b18                __pre_init_runtime_init_clocks
+                0x10004e48        0x4 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.o
+                0x10004e48                __pre_init_runtime_init_clocks
  .preinit_array.00600
-                0x10004b1c        0x4 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.o
-                0x10004b1c                __pre_init_runtime_init_post_clock_resets
+                0x10004e4c        0x4 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.o
+                0x10004e4c                __pre_init_runtime_init_post_clock_resets
  .preinit_array.00700
-                0x10004b20        0x4 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.o
-                0x10004b20                __pre_init_runtime_init_rp2040_gpio_ie_disable
+                0x10004e50        0x4 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.o
+                0x10004e50                __pre_init_runtime_init_rp2040_gpio_ie_disable
  .preinit_array.01000
-                0x10004b24        0x4 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.o
-                0x10004b24                __pre_init_runtime_init_spin_locks_reset
+                0x10004e54        0x4 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.o
+                0x10004e54                __pre_init_runtime_init_spin_locks_reset
  .preinit_array.01100
-                0x10004b28        0x4 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/pico_sync/mutex.c.o
-                0x10004b28                __pre_init_runtime_init_mutex
+                0x10004e58        0x4 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/pico_sync/mutex.c.o
+                0x10004e58                __pre_init_runtime_init_mutex
  .preinit_array.10080
-                0x10004b2c        0x4 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.o
-                0x10004b2c                __pre_init_runtime_init_install_ram_vector_table
+                0x10004e5c        0x4 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.o
+                0x10004e5c                __pre_init_runtime_init_install_ram_vector_table
  .preinit_array.11000
-                0x10004b30        0x4 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/pico_time/time.c.o
-                0x10004b30                __pre_init_runtime_init_default_alarm_pool
+                0x10004e60        0x4 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/pico_time/time.c.o
+                0x10004e60                __pre_init_runtime_init_default_alarm_pool
  .preinit_array.YYYYY
-                0x10004b34        0x4 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_runtime/runtime.c.o
-                0x10004b34                __pre_init_first_per_core_initializer
+                0x10004e64        0x4 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_runtime/runtime.c.o
+                0x10004e64                __pre_init_first_per_core_initializer
  .preinit_array.ZZZZZ.01200
-                0x10004b38        0x4 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_irq/irq.c.o
-                0x10004b38                __pre_init_runtime_init_per_core_irq_priorities
+                0x10004e68        0x4 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_irq/irq.c.o
+                0x10004e68                __pre_init_runtime_init_per_core_irq_priorities
  *(.preinit_array)
-                0x10004b3c                        PROVIDE (__preinit_array_end = .)
-                0x10004b3c                        . = ALIGN (0x4)
-                0x10004b3c                        PROVIDE (__init_array_start = .)
+                0x10004e6c                        PROVIDE (__preinit_array_end = .)
+                0x10004e6c                        . = ALIGN (0x4)
+                0x10004e6c                        PROVIDE (__init_array_start = .)
  *(SORT_BY_NAME(.init_array.*))
  .init_array.01000
-                0x10004b3c        0x4 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c.o
+                0x10004e6c        0x4 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c.o
  *(.init_array)
-                0x10004b40                        PROVIDE (__init_array_end = .)
+                0x10004e70                        PROVIDE (__init_array_end = .)
                 [!provide]                        PROVIDE (__bothinit_array_end = .)
-                0x10004b40                        . = ALIGN (0x4)
+                0x10004e70                        . = ALIGN (0x4)
                 [!provide]                        PROVIDE (__fini_array_start = .)
  *(SORT_BY_NAME(.fini_array.*))
  *(.fini_array)
                 [!provide]                        PROVIDE (__fini_array_end = .)
                 [!provide]                        PROVIDE (__dso_handle = 0x0)
  *(.eh_frame*)
-                0x10004b40                        . = ALIGN (0x4)
+                0x10004e70                        . = ALIGN (0x4)
 
-.glue_7         0x10004b40        0x0
- .glue_7        0x10004b40        0x0 linker stubs
+.glue_7         0x10004e70        0x0
+ .glue_7        0x10004e70        0x0 linker stubs
 
-.glue_7t        0x10004b40        0x0
- .glue_7t       0x10004b40        0x0 linker stubs
+.glue_7t        0x10004e70        0x0
+ .glue_7t       0x10004e70        0x0 linker stubs
 
-.vfp11_veneer   0x10004b40        0x0
- .vfp11_veneer  0x10004b40        0x0 linker stubs
+.vfp11_veneer   0x10004e70        0x0
+ .vfp11_veneer  0x10004e70        0x0 linker stubs
 
-.v4_bx          0x10004b40        0x0
- .v4_bx         0x10004b40        0x0 linker stubs
+.v4_bx          0x10004e70        0x0
+ .v4_bx         0x10004e70        0x0 linker stubs
 
-.iplt           0x10004b40        0x0
- .iplt          0x10004b40        0x0 CMakeFiles/pico_usb_sound_card.dir/main.c.o
+.iplt           0x10004e70        0x0
+ .iplt          0x10004e70        0x0 CMakeFiles/pico_usb_sound_card.dir/main.c.o
 
-.rodata         0x10004b40      0x304
+.rodata         0x10004e70      0x304
  *(EXCLUDE_FILE(*libm.a: *libgcc.a:) .rodata*)
- .rodata        0x10004b40        0x2 CMakeFiles/pico_usb_sound_card.dir/main.c.o
- *fill*         0x10004b42        0x2 
+ .rodata        0x10004e70        0x2 CMakeFiles/pico_usb_sound_card.dir/main.c.o
+ *fill*         0x10004e72        0x2 
  .rodata.audio_i2s_program
-                0x10004b44        0x8 CMakeFiles/pico_usb_sound_card.dir/audio_i2s.c.o
+                0x10004e74        0x8 CMakeFiles/pico_usb_sound_card.dir/audio_i2s.c.o
  .rodata.audio_i2s_program_instructions
-                0x10004b4c       0x10 CMakeFiles/pico_usb_sound_card.dir/audio_i2s.c.o
+                0x10004e7c       0x10 CMakeFiles/pico_usb_sound_card.dir/audio_i2s.c.o
  .rodata.str1.4
-                0x10004b5c      0x10c CMakeFiles/pico_usb_sound_card.dir/usb_descriptors.c.o
+                0x10004e8c      0x10c CMakeFiles/pico_usb_sound_card.dir/usb_descriptors.c.o
                                  0x3e (size before relaxing)
  .rodata.string_desc_arr
-                0x10004c68       0x14 CMakeFiles/pico_usb_sound_card.dir/usb_descriptors.c.o
+                0x10004f98       0x14 CMakeFiles/pico_usb_sound_card.dir/usb_descriptors.c.o
  .rodata.__compound_literal.0
-                0x10004c7c        0x2 CMakeFiles/pico_usb_sound_card.dir/usb_descriptors.c.o
- *fill*         0x10004c7e        0x2 
+                0x10004fac        0x2 CMakeFiles/pico_usb_sound_card.dir/usb_descriptors.c.o
+ *fill*         0x10004fae        0x2 
  .rodata.desc_configuration
-                0x10004c80       0x7a CMakeFiles/pico_usb_sound_card.dir/usb_descriptors.c.o
-                0x10004c80                desc_configuration
- *fill*         0x10004cfa        0x2 
+                0x10004fb0       0x7a CMakeFiles/pico_usb_sound_card.dir/usb_descriptors.c.o
+                0x10004fb0                desc_configuration
+ *fill*         0x1000502a        0x2 
  .rodata.desc_device
-                0x10004cfc       0x12 CMakeFiles/pico_usb_sound_card.dir/usb_descriptors.c.o
-                0x10004cfc                desc_device
+                0x1000502c       0x12 CMakeFiles/pico_usb_sound_card.dir/usb_descriptors.c.o
+                0x1000502c                desc_device
  .rodata.panic.str1.4
-                0x10004d0e        0x0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_platform_panic/panic.c.o
+                0x1000503e        0x0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_platform_panic/panic.c.o
                                  0x11 (size before relaxing)
  .rodata.spin_lock_claim_unused.str1.4
-                0x10004d0e        0x0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_sync/sync.c.o
+                0x1000503e        0x0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_sync/sync.c.o
                                  0x1b (size before relaxing)
  .rodata.timer_hardware_alarm_claim.str1.4
-                0x10004d0e        0x0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_timer/timer.c.o
+                0x1000503e        0x0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_timer/timer.c.o
                                  0x22 (size before relaxing)
  .rodata.hard_assertion_failure.str1.4
-                0x10004d0e        0x0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_runtime/runtime.c.o
+                0x1000503e        0x0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_runtime/runtime.c.o
                                   0xc (size before relaxing)
  .rodata.str1.4
-                0x10004d0e        0x0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
+                0x1000503e        0x0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
                                  0x48 (size before relaxing)
- *fill*         0x10004d0e        0x2 
+ *fill*         0x1000503e        0x2 
  .rodata.__bi_84
-                0x10004d10        0xc CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
+                0x10005040        0xc CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
  .rodata.__bi_78
-                0x10004d1c        0xc CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
+                0x1000504c        0xc CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
  .rodata.__bi_54
-                0x10004d28        0xc CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
+                0x10005058        0xc CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
  .rodata.__bi_48
-                0x10004d34        0xc CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
+                0x10005064        0xc CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
  .rodata.__bi_42
-                0x10004d40        0xc CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
+                0x10005070        0xc CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
  .rodata.__bi_34
-                0x10004d4c        0xc CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
+                0x1000507c        0xc CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
  .rodata.__bi_26
-                0x10004d58        0xc CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
+                0x10005088        0xc CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
  .rodata.crlf_str.0
-                0x10004d64        0x2 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_stdio/stdio.c.o
+                0x10005094        0x2 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_stdio/stdio.c.o
  .rodata.str1.4
-                0x10004d66        0x0 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.o
+                0x10005096        0x0 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.o
                                  0x23 (size before relaxing)
- *fill*         0x10004d66        0x2 
+ *fill*         0x10005096        0x2 
  .rodata.tud_task_ext
-                0x10004d68       0x8c CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/device/usbd.c.o
- .rodata        0x10004df4       0x20 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/device/usbd.c.o
+                0x10005098       0x8c CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/device/usbd.c.o
+ .rodata        0x10005124       0x20 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/device/usbd.c.o
  .rodata._usbd_driver
-                0x10004e14       0x24 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/device/usbd.c.o
+                0x10005144       0x24 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/device/usbd.c.o
  .rodata.str1.4
-                0x10004e38        0x0 CMakeFiles/pico_usb_sound_card.dir/tinyusb/hw/bsp/rp2040/family.c.o
+                0x10005168        0x0 CMakeFiles/pico_usb_sound_card.dir/tinyusb/hw/bsp/rp2040/family.c.o
                                   0x4 (size before relaxing)
  .rodata.__bi_192.0
-                0x10004e38        0xc CMakeFiles/pico_usb_sound_card.dir/tinyusb/hw/bsp/rp2040/family.c.o
+                0x10005168        0xc CMakeFiles/pico_usb_sound_card.dir/tinyusb/hw/bsp/rp2040/family.c.o
  *(.srodata*)
-                0x10004e44                        . = ALIGN (0x4)
+                0x10005174                        . = ALIGN (0x4)
  *(SORT_BY_ALIGNMENT(SORT_BY_NAME(.flashdata*)))
-                0x10004e44                        . = ALIGN (0x4)
+                0x10005174                        . = ALIGN (0x4)
 
 .ARM.extab
  *(.ARM.extab* .gnu.linkonce.armextab.*)
-                0x10004e44                        __exidx_start = .
+                0x10005174                        __exidx_start = .
 
 .ARM.exidx
  *(.ARM.exidx* .gnu.linkonce.armexidx.*)
-                0x10004e44                        __exidx_end = .
-                0x10004e44                        . = ALIGN (0x4)
-                0x10004e44                        __binary_info_start = .
+                0x10005174                        __exidx_end = .
+                0x10005174                        . = ALIGN (0x4)
+                0x10005174                        __binary_info_start = .
 
-.binary_info    0x10004e44       0x20
+.binary_info    0x10005174       0x20
  *(.binary_info.keep.*)
  .binary_info.keep.__bi_ptr84
-                0x10004e44        0x4 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
+                0x10005174        0x4 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
  .binary_info.keep.__bi_ptr78
-                0x10004e48        0x4 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
+                0x10005178        0x4 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
  .binary_info.keep.__bi_ptr54
-                0x10004e4c        0x4 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
+                0x1000517c        0x4 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
  .binary_info.keep.__bi_ptr48
-                0x10004e50        0x4 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
+                0x10005180        0x4 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
  .binary_info.keep.__bi_ptr42
-                0x10004e54        0x4 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
+                0x10005184        0x4 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
  .binary_info.keep.__bi_ptr34
-                0x10004e58        0x4 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
+                0x10005188        0x4 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
  .binary_info.keep.__bi_ptr26
-                0x10004e5c        0x4 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
+                0x1000518c        0x4 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
  .binary_info.keep.__bi_ptr192
-                0x10004e60        0x4 CMakeFiles/pico_usb_sound_card.dir/tinyusb/hw/bsp/rp2040/family.c.o
+                0x10005190        0x4 CMakeFiles/pico_usb_sound_card.dir/tinyusb/hw/bsp/rp2040/family.c.o
  *(.binary_info.*)
-                0x10004e64                        __binary_info_end = .
-                0x10004e64                        . = ALIGN (0x4)
+                0x10005194                        __binary_info_end = .
+                0x10005194                        . = ALIGN (0x4)
 
-.xip_ram        0x15000000        0x0 load address 0x10004e64
+.xip_ram        0x15000000        0x0 load address 0x10005194
                 0x15000000                        __xip_ram_start__ = .
                 0x15000000                        . = ALIGN (0x4)
  *(.xip_ram*)
                 0x15000000                        . = ALIGN (0x4)
                 0x15000000                        __xip_ram_end__ = .
-                0x10004e64                        __xip_ram_source__ = LOADADDR (.xip_ram)
+                0x10005194                        __xip_ram_source__ = LOADADDR (.xip_ram)
 
 .ram_vector_table
                 0x20000000       0xc0
@@ -4305,7 +4316,7 @@ END GROUP
                 0x200000c0                        . = ALIGN (0x4)
  *(.uninitialized_data*)
 
-.data           0x200000c0      0xf60 load address 0x10004e64
+.data           0x200000c0      0xf60 load address 0x10005194
                 0x200000c0                        __data_start__ = .
  *(vtable)
  *(.time_critical*)
@@ -4423,18 +4434,18 @@ END GROUP
  *(.jcr)
                 0x20001020                        . = ALIGN (0x4)
 
-.igot.plt       0x20001020        0x0 load address 0x10005dc4
+.igot.plt       0x20001020        0x0 load address 0x100060f4
  .igot.plt      0x20001020        0x0 CMakeFiles/pico_usb_sound_card.dir/main.c.o
 
-.tdata          0x20001020        0x0 load address 0x10005dc4
+.tdata          0x20001020        0x0 load address 0x100060f4
                 0x20001020                        . = ALIGN (0x4)
  *(.tdata .tdata.* .gnu.linkonce.td.*)
                 0x20001020                        __tdata_end = .
                 0x20001020                        PROVIDE (__data_end__ = .)
-                0x10004e64                        __etext = LOADADDR (.data)
+                0x10005194                        __etext = LOADADDR (.data)
                 0x20001020                        . = ALIGN (0x4)
 
-.tbss           0x20001020        0x0 load address 0x10005dc4
+.tbss           0x20001020        0x0 load address 0x100060f4
                 0x20001020                        __bss_start__ = .
                 0x20001020                        __tls_base = .
  *(.tbss .tbss.* .gnu.linkonce.tb.*)
@@ -4442,10 +4453,10 @@ END GROUP
                 0x20001020                        . = ALIGN (0x4)
                 0x20001020                        __tls_end = .
 
-.tbss_space     0x20001020        0x0 load address 0x10005dc4
+.tbss_space     0x20001020        0x0 load address 0x100060f4
                 0x20001020                        . = (__bss_start__ + SIZEOF (.tbss))
 
-.bss            0x20001020     0x1de4 load address 0x10005dc4
+.bss            0x20001020     0x1de4 load address 0x100060f4
                 0x20001020                        . = ALIGN (0x4)
                 0x20001020                        __tbss_end = .
  *(SORT_BY_ALIGNMENT(SORT_BY_NAME(.bss*)))
@@ -4561,31 +4572,31 @@ END GROUP
                 0x00000000                        __tls_size_align = DEFINED (__tls_size_align)?__tls_size_align:ALIGN (__tls_size, __tls_align)
                 0x00000008                        __arm32_tls_tcb_offset = DEFINED (__arm32_tls_tcb_offset)?__arm32_tls_tcb_offset:MAX (0x8, __tls_align)
                 0x00000000                        __tdata_size = DEFINED (__tdata_size)?__tdata_size:SIZEOF (.tdata)
-                0x10005dc4                        __tdata_source = DEFINED (__tdata_source)?__tdata_source:LOADADDR (.tdata)
+                0x100060f4                        __tdata_source = DEFINED (__tdata_source)?__tdata_source:LOADADDR (.tdata)
                 0x00000000                        __tbss_size = DEFINED (__tbss_size)?__tbss_size:SIZEOF (.tbss)
                 0x00000000                        __tbss_offset = DEFINED (__tbss_offset)?__tbss_offset:(ADDR (.tbss) - __tls_start)
                 0x00000001                        __tlsX_align = DEFINED (__tlsX_align)?__tlsX_align:(SIZEOF (.tlsX_not_needed_marker) > 0x0)?0x4:__tls_align
                 0x00000000                        __tlsX_size_align = DEFINED (__tlsX_size_align)?__tlsX_size_align:(SIZEOF (.tlsX_not_needed_marker) > 0x0)?0x0:__tls_size_align
 
-.tls0           0x20002e04        0x0 load address 0x10005dc4
+.tls0           0x20002e04        0x0 load address 0x100060f4
                 0x20002e04                        . = ALIGN (__tlsX_align)
                 [!provide]                        PROVIDE (__tls0_base = .)
                 0x20002e04                        . = (. + __tlsX_size_align)
 
-.tls1           0x20002e04        0x0 load address 0x10005dc4
+.tls1           0x20002e04        0x0 load address 0x100060f4
                 0x20002e04                        . = ALIGN (__tlsX_align)
                 [!provide]                        PROVIDE (__tls1_base = .)
                 0x20002e04                        . = (. + __tlsX_size_align)
 
 .persistent_data
-                0x20002e04        0x0 load address 0x10005dc4
+                0x20002e04        0x0 load address 0x100060f4
                 0x20002e04                        __persistent_data_start__ = .
  *(.persistent_data*)
                 0x20002e04                        . = ALIGN (0x4)
                 [!provide]                        PROVIDE (__persistent_data_end__ = .)
 
 .dummy_pre_heap
-                0x20002e04        0x0 load address 0x10005dc4
+                0x20002e04        0x0 load address 0x100060f4
                 0x20002e04                        . = .
 
 .heap           0x20002e04      0x800
@@ -4595,19 +4606,19 @@ END GROUP
  .heap          0x20002e04      0x800 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_crt0/crt0.S.o
                 0x20040000                        __HeapLimit = DEFINED (HEAP_LIMIT)?HEAP_LIMIT:(ORIGIN (RAM) + LENGTH (RAM))
 
-.scratch_x      0x20040000        0x0 load address 0x10005dc4
+.scratch_x      0x20040000        0x0 load address 0x100060f4
                 0x20040000                        __scratch_x_start__ = .
  *(.scratch_x.*)
                 0x20040000                        . = ALIGN (0x4)
                 0x20040000                        __scratch_x_end__ = .
-                0x10005dc4                        __scratch_x_source__ = LOADADDR (.scratch_x)
+                0x100060f4                        __scratch_x_source__ = LOADADDR (.scratch_x)
 
-.scratch_y      0x20041000        0x0 load address 0x10005dc4
+.scratch_y      0x20041000        0x0 load address 0x100060f4
                 0x20041000                        __scratch_y_start__ = .
  *(.scratch_y.*)
                 0x20041000                        . = ALIGN (0x4)
                 0x20041000                        __scratch_y_end__ = .
-                0x10005dc4                        __scratch_y_source__ = LOADADDR (.scratch_y)
+                0x100060f4                        __scratch_y_source__ = LOADADDR (.scratch_y)
 
 .stack1_dummy
  *(.stack1*)
@@ -4619,9 +4630,9 @@ END GROUP
 .rel.dyn        0x20041800        0x0
  .rel.iplt      0x20041800        0x0 CMakeFiles/pico_usb_sound_card.dir/main.c.o
 
-.flash_end      0x10005dc4        0x0
+.flash_end      0x100060f4        0x0
  *(.embedded_end_block*)
-                0x10005dc4                        PROVIDE (__flash_binary_end = .)
+                0x100060f4                        PROVIDE (__flash_binary_end = .)
                 0x20040000                        __StackLimit = (ORIGIN (RAM) + LENGTH (RAM))
                 0x20041000                        __StackOneTop = (ORIGIN (SCRATCH_X) + LENGTH (SCRATCH_X))
                 0x20042000                        __StackTop = (ORIGIN (SCRATCH_Y) + LENGTH (SCRATCH_Y))
@@ -4640,540 +4651,540 @@ END GROUP
 OUTPUT(pico_usb_sound_card.elf elf32-littlearm)
 LOAD linker stubs
 
-.debug_info     0x00000000    0x36993
- .debug_info    0x00000000     0x2496 CMakeFiles/pico_usb_sound_card.dir/main.c.o
- .debug_info    0x00002496     0x15c2 CMakeFiles/pico_usb_sound_card.dir/audio_i2s.c.o
- .debug_info    0x00003a58      0x8c6 CMakeFiles/pico_usb_sound_card.dir/usb_descriptors.c.o
- .debug_info    0x0000431e     0x22d1 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.o
- .debug_info    0x000065ef      0x129 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2040/pico_platform/platform.c.o
- .debug_info    0x00006718      0x1bf CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_platform_panic/panic.c.o
- .debug_info    0x000068d7      0x987 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/hardware_claim/claim.c.o
- .debug_info    0x0000725e      0x463 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_sync/sync.c.o
- .debug_info    0x000076c1      0x244 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_sync_spin_lock/sync_spin_lock.c.o
- .debug_info    0x00007905     0x2266 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_irq/irq.c.o
- .debug_info    0x00009b6b      0x161 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/pico_sync/lock_core.c.o
- .debug_info    0x00009ccc     0x279d CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/pico_sync/mutex.c.o
- .debug_info    0x0000c469      0x304 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/pico_sync/critical_section.c.o
- .debug_info    0x0000c76d     0x4ce7 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/pico_time/time.c.o
- .debug_info    0x00011454     0x2ab2 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_timer/timer.c.o
- .debug_info    0x00013f06     0x2eb7 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.o
- .debug_info    0x00016dbd      0x500 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_pll/pll.c.o
- .debug_info    0x000172bd      0x248 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_ticks/ticks.c.o
- .debug_info    0x00017505      0x65a CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.o
- .debug_info    0x00017b5f      0x1d0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_xosc/xosc.c.o
- .debug_info    0x00017d2f      0x206 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_runtime/runtime.c.o
- .debug_info    0x00017f35      0x7ea CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.o
- .debug_info    0x0001871f      0x781 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init_clocks.c.o
- .debug_info    0x00018ea0       0x23 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.o
- .debug_info    0x00018ec3       0x23 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_divider/divider_hardware.S.o
- .debug_info    0x00018ee6       0x23 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_double/double_aeabi_rp2040.S.o
- .debug_info    0x00018f09      0x28c CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_double/double_init_rom_rp2040.c.o
- .debug_info    0x00019195       0x23 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.o
- .debug_info    0x000191b8       0x24 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.S.o
- .debug_info    0x000191dc       0x23 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_float/float_aeabi_rp2040.S.o
- .debug_info    0x000191ff      0x28c CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_float/float_init_rom_rp2040.c.o
- .debug_info    0x0001948b       0x23 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_float/float_v1_rom_shim_rp2040.S.o
- .debug_info    0x000194ae       0x23 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.o
- .debug_info    0x000194d1      0x2ac CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
- .debug_info    0x0001977d     0x22f6 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_printf/printf.c.o
- .debug_info    0x0001ba73       0x23 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_crt0/crt0.S.o
- .debug_info    0x0001ba96      0xbb5 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_clib_interface/newlib_interface.c.o
- .debug_info    0x0001c64b     0x1b51 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_stdio/stdio.c.o
- .debug_info    0x0001e19c      0x201 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c.o
- .debug_info    0x0001e39d     0x1870 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_flash/flash.c.o
- .debug_info    0x0001fc0d     0x305f CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.o
- .debug_info    0x00022c6c     0x19e4 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.o
- .debug_info    0x00024650     0x5a3f CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/device/usbd.c.o
- .debug_info    0x0002a08f     0x3abc CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/class/audio/audio_device.c.o
- .debug_info    0x0002db4b     0x277e CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/tusb.c.o
- .debug_info    0x000302c9     0x28cd CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/common/tusb_fifo.c.o
- .debug_info    0x00032b96      0xca9 CMakeFiles/pico_usb_sound_card.dir/tinyusb/hw/bsp/rp2040/family.c.o
- .debug_info    0x0003383f     0x3028 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_pio/pio.c.o
- .debug_info    0x00036867       0x3c /usr/lib/gcc/arm-none-eabi/16.2.0/thumb/v6-m/nofp/libgcc.a(_dvmd_tls.o)
- .debug_info    0x000368a3       0xf0 /usr/lib/gcc/arm-none-eabi/16.2.0/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libg.a(libc_a-strlen-stub.o)
+.debug_info     0x00000000    0x36c7f
+ .debug_info    0x00000000     0x2782 CMakeFiles/pico_usb_sound_card.dir/main.c.o
+ .debug_info    0x00002782     0x15c2 CMakeFiles/pico_usb_sound_card.dir/audio_i2s.c.o
+ .debug_info    0x00003d44      0x8c6 CMakeFiles/pico_usb_sound_card.dir/usb_descriptors.c.o
+ .debug_info    0x0000460a     0x22d1 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.o
+ .debug_info    0x000068db      0x129 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2040/pico_platform/platform.c.o
+ .debug_info    0x00006a04      0x1bf CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_platform_panic/panic.c.o
+ .debug_info    0x00006bc3      0x987 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/hardware_claim/claim.c.o
+ .debug_info    0x0000754a      0x463 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_sync/sync.c.o
+ .debug_info    0x000079ad      0x244 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_sync_spin_lock/sync_spin_lock.c.o
+ .debug_info    0x00007bf1     0x2266 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_irq/irq.c.o
+ .debug_info    0x00009e57      0x161 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/pico_sync/lock_core.c.o
+ .debug_info    0x00009fb8     0x279d CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/pico_sync/mutex.c.o
+ .debug_info    0x0000c755      0x304 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/pico_sync/critical_section.c.o
+ .debug_info    0x0000ca59     0x4ce7 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/pico_time/time.c.o
+ .debug_info    0x00011740     0x2ab2 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_timer/timer.c.o
+ .debug_info    0x000141f2     0x2eb7 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.o
+ .debug_info    0x000170a9      0x500 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_pll/pll.c.o
+ .debug_info    0x000175a9      0x248 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_ticks/ticks.c.o
+ .debug_info    0x000177f1      0x65a CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.o
+ .debug_info    0x00017e4b      0x1d0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_xosc/xosc.c.o
+ .debug_info    0x0001801b      0x206 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_runtime/runtime.c.o
+ .debug_info    0x00018221      0x7ea CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.o
+ .debug_info    0x00018a0b      0x781 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init_clocks.c.o
+ .debug_info    0x0001918c       0x23 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.o
+ .debug_info    0x000191af       0x23 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_divider/divider_hardware.S.o
+ .debug_info    0x000191d2       0x23 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_double/double_aeabi_rp2040.S.o
+ .debug_info    0x000191f5      0x28c CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_double/double_init_rom_rp2040.c.o
+ .debug_info    0x00019481       0x23 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.o
+ .debug_info    0x000194a4       0x24 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.S.o
+ .debug_info    0x000194c8       0x23 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_float/float_aeabi_rp2040.S.o
+ .debug_info    0x000194eb      0x28c CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_float/float_init_rom_rp2040.c.o
+ .debug_info    0x00019777       0x23 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_float/float_v1_rom_shim_rp2040.S.o
+ .debug_info    0x0001979a       0x23 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.o
+ .debug_info    0x000197bd      0x2ac CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
+ .debug_info    0x00019a69     0x22f6 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_printf/printf.c.o
+ .debug_info    0x0001bd5f       0x23 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_crt0/crt0.S.o
+ .debug_info    0x0001bd82      0xbb5 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_clib_interface/newlib_interface.c.o
+ .debug_info    0x0001c937     0x1b51 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_stdio/stdio.c.o
+ .debug_info    0x0001e488      0x201 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c.o
+ .debug_info    0x0001e689     0x1870 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_flash/flash.c.o
+ .debug_info    0x0001fef9     0x305f CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.o
+ .debug_info    0x00022f58     0x19e4 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.o
+ .debug_info    0x0002493c     0x5a3f CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/device/usbd.c.o
+ .debug_info    0x0002a37b     0x3abc CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/class/audio/audio_device.c.o
+ .debug_info    0x0002de37     0x277e CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/tusb.c.o
+ .debug_info    0x000305b5     0x28cd CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/common/tusb_fifo.c.o
+ .debug_info    0x00032e82      0xca9 CMakeFiles/pico_usb_sound_card.dir/tinyusb/hw/bsp/rp2040/family.c.o
+ .debug_info    0x00033b2b     0x3028 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_pio/pio.c.o
+ .debug_info    0x00036b53       0x3c /usr/lib/gcc/arm-none-eabi/16.2.0/thumb/v6-m/nofp/libgcc.a(_dvmd_tls.o)
+ .debug_info    0x00036b8f       0xf0 /usr/lib/gcc/arm-none-eabi/16.2.0/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libg.a(libc_a-strlen-stub.o)
 
-.debug_abbrev   0x00000000     0x8f86
- .debug_abbrev  0x00000000      0x5f0 CMakeFiles/pico_usb_sound_card.dir/main.c.o
- .debug_abbrev  0x000005f0      0x42d CMakeFiles/pico_usb_sound_card.dir/audio_i2s.c.o
- .debug_abbrev  0x00000a1d      0x1f4 CMakeFiles/pico_usb_sound_card.dir/usb_descriptors.c.o
- .debug_abbrev  0x00000c11      0x511 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.o
- .debug_abbrev  0x00001122       0x77 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2040/pico_platform/platform.c.o
- .debug_abbrev  0x00001199      0x12b CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_platform_panic/panic.c.o
- .debug_abbrev  0x000012c4      0x354 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/hardware_claim/claim.c.o
- .debug_abbrev  0x00001618      0x22b CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_sync/sync.c.o
- .debug_abbrev  0x00001843      0x1b1 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_sync_spin_lock/sync_spin_lock.c.o
- .debug_abbrev  0x000019f4      0x656 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_irq/irq.c.o
- .debug_abbrev  0x0000204a       0xee CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/pico_sync/lock_core.c.o
- .debug_abbrev  0x00002138      0x4be CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/pico_sync/mutex.c.o
- .debug_abbrev  0x000025f6      0x204 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/pico_sync/critical_section.c.o
- .debug_abbrev  0x000027fa      0x746 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/pico_time/time.c.o
- .debug_abbrev  0x00002f40      0x501 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_timer/timer.c.o
- .debug_abbrev  0x00003441      0x583 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.o
- .debug_abbrev  0x000039c4      0x1f2 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_pll/pll.c.o
- .debug_abbrev  0x00003bb6      0x145 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_ticks/ticks.c.o
- .debug_abbrev  0x00003cfb      0x1bc CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.o
- .debug_abbrev  0x00003eb7      0x11d CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_xosc/xosc.c.o
- .debug_abbrev  0x00003fd4      0x173 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_runtime/runtime.c.o
- .debug_abbrev  0x00004147      0x26b CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.o
- .debug_abbrev  0x000043b2      0x2af CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init_clocks.c.o
- .debug_abbrev  0x00004661       0x12 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.o
- .debug_abbrev  0x00004673       0x12 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_divider/divider_hardware.S.o
- .debug_abbrev  0x00004685       0x12 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_double/double_aeabi_rp2040.S.o
- .debug_abbrev  0x00004697      0x17a CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_double/double_init_rom_rp2040.c.o
- .debug_abbrev  0x00004811       0x12 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.o
- .debug_abbrev  0x00004823       0x14 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.S.o
- .debug_abbrev  0x00004837       0x12 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_float/float_aeabi_rp2040.S.o
- .debug_abbrev  0x00004849      0x173 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_float/float_init_rom_rp2040.c.o
- .debug_abbrev  0x000049bc       0x12 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_float/float_v1_rom_shim_rp2040.S.o
- .debug_abbrev  0x000049ce       0x12 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.o
- .debug_abbrev  0x000049e0       0xb8 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
- .debug_abbrev  0x00004a98      0x543 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_printf/printf.c.o
- .debug_abbrev  0x00004fdb       0x12 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_crt0/crt0.S.o
- .debug_abbrev  0x00004fed      0x35f CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_clib_interface/newlib_interface.c.o
- .debug_abbrev  0x0000534c      0x634 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_stdio/stdio.c.o
- .debug_abbrev  0x00005980      0x153 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c.o
- .debug_abbrev  0x00005ad3      0x44c CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_flash/flash.c.o
- .debug_abbrev  0x00005f1f      0x65f CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.o
- .debug_abbrev  0x0000657e      0x5ec CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.o
- .debug_abbrev  0x00006b6a      0x8d3 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/device/usbd.c.o
- .debug_abbrev  0x0000743d      0x63f CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/class/audio/audio_device.c.o
- .debug_abbrev  0x00007a7c      0x592 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/tusb.c.o
- .debug_abbrev  0x0000800e      0x418 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/common/tusb_fifo.c.o
- .debug_abbrev  0x00008426      0x49f CMakeFiles/pico_usb_sound_card.dir/tinyusb/hw/bsp/rp2040/family.c.o
- .debug_abbrev  0x000088c5      0x605 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_pio/pio.c.o
- .debug_abbrev  0x00008eca       0x26 /usr/lib/gcc/arm-none-eabi/16.2.0/thumb/v6-m/nofp/libgcc.a(_dvmd_tls.o)
- .debug_abbrev  0x00008ef0       0x96 /usr/lib/gcc/arm-none-eabi/16.2.0/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libg.a(libc_a-strlen-stub.o)
+.debug_abbrev   0x00000000     0x8fd4
+ .debug_abbrev  0x00000000      0x63e CMakeFiles/pico_usb_sound_card.dir/main.c.o
+ .debug_abbrev  0x0000063e      0x42d CMakeFiles/pico_usb_sound_card.dir/audio_i2s.c.o
+ .debug_abbrev  0x00000a6b      0x1f4 CMakeFiles/pico_usb_sound_card.dir/usb_descriptors.c.o
+ .debug_abbrev  0x00000c5f      0x511 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.o
+ .debug_abbrev  0x00001170       0x77 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2040/pico_platform/platform.c.o
+ .debug_abbrev  0x000011e7      0x12b CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_platform_panic/panic.c.o
+ .debug_abbrev  0x00001312      0x354 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/hardware_claim/claim.c.o
+ .debug_abbrev  0x00001666      0x22b CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_sync/sync.c.o
+ .debug_abbrev  0x00001891      0x1b1 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_sync_spin_lock/sync_spin_lock.c.o
+ .debug_abbrev  0x00001a42      0x656 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_irq/irq.c.o
+ .debug_abbrev  0x00002098       0xee CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/pico_sync/lock_core.c.o
+ .debug_abbrev  0x00002186      0x4be CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/pico_sync/mutex.c.o
+ .debug_abbrev  0x00002644      0x204 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/pico_sync/critical_section.c.o
+ .debug_abbrev  0x00002848      0x746 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/pico_time/time.c.o
+ .debug_abbrev  0x00002f8e      0x501 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_timer/timer.c.o
+ .debug_abbrev  0x0000348f      0x583 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.o
+ .debug_abbrev  0x00003a12      0x1f2 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_pll/pll.c.o
+ .debug_abbrev  0x00003c04      0x145 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_ticks/ticks.c.o
+ .debug_abbrev  0x00003d49      0x1bc CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.o
+ .debug_abbrev  0x00003f05      0x11d CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_xosc/xosc.c.o
+ .debug_abbrev  0x00004022      0x173 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_runtime/runtime.c.o
+ .debug_abbrev  0x00004195      0x26b CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.o
+ .debug_abbrev  0x00004400      0x2af CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init_clocks.c.o
+ .debug_abbrev  0x000046af       0x12 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.o
+ .debug_abbrev  0x000046c1       0x12 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_divider/divider_hardware.S.o
+ .debug_abbrev  0x000046d3       0x12 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_double/double_aeabi_rp2040.S.o
+ .debug_abbrev  0x000046e5      0x17a CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_double/double_init_rom_rp2040.c.o
+ .debug_abbrev  0x0000485f       0x12 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.o
+ .debug_abbrev  0x00004871       0x14 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.S.o
+ .debug_abbrev  0x00004885       0x12 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_float/float_aeabi_rp2040.S.o
+ .debug_abbrev  0x00004897      0x173 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_float/float_init_rom_rp2040.c.o
+ .debug_abbrev  0x00004a0a       0x12 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_float/float_v1_rom_shim_rp2040.S.o
+ .debug_abbrev  0x00004a1c       0x12 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.o
+ .debug_abbrev  0x00004a2e       0xb8 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
+ .debug_abbrev  0x00004ae6      0x543 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_printf/printf.c.o
+ .debug_abbrev  0x00005029       0x12 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_crt0/crt0.S.o
+ .debug_abbrev  0x0000503b      0x35f CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_clib_interface/newlib_interface.c.o
+ .debug_abbrev  0x0000539a      0x634 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_stdio/stdio.c.o
+ .debug_abbrev  0x000059ce      0x153 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c.o
+ .debug_abbrev  0x00005b21      0x44c CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_flash/flash.c.o
+ .debug_abbrev  0x00005f6d      0x65f CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.o
+ .debug_abbrev  0x000065cc      0x5ec CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.o
+ .debug_abbrev  0x00006bb8      0x8d3 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/device/usbd.c.o
+ .debug_abbrev  0x0000748b      0x63f CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/class/audio/audio_device.c.o
+ .debug_abbrev  0x00007aca      0x592 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/tusb.c.o
+ .debug_abbrev  0x0000805c      0x418 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/common/tusb_fifo.c.o
+ .debug_abbrev  0x00008474      0x49f CMakeFiles/pico_usb_sound_card.dir/tinyusb/hw/bsp/rp2040/family.c.o
+ .debug_abbrev  0x00008913      0x605 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_pio/pio.c.o
+ .debug_abbrev  0x00008f18       0x26 /usr/lib/gcc/arm-none-eabi/16.2.0/thumb/v6-m/nofp/libgcc.a(_dvmd_tls.o)
+ .debug_abbrev  0x00008f3e       0x96 /usr/lib/gcc/arm-none-eabi/16.2.0/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libg.a(libc_a-strlen-stub.o)
 
 .debug_loclists
-                0x00000000    0x1eed7
+                0x00000000    0x1ef06
  .debug_loclists
-                0x00000000      0xf98 CMakeFiles/pico_usb_sound_card.dir/main.c.o
+                0x00000000      0xfc7 CMakeFiles/pico_usb_sound_card.dir/main.c.o
  .debug_loclists
-                0x00000f98      0x522 CMakeFiles/pico_usb_sound_card.dir/audio_i2s.c.o
+                0x00000fc7      0x522 CMakeFiles/pico_usb_sound_card.dir/audio_i2s.c.o
  .debug_loclists
-                0x000014ba      0x236 CMakeFiles/pico_usb_sound_card.dir/usb_descriptors.c.o
+                0x000014e9      0x236 CMakeFiles/pico_usb_sound_card.dir/usb_descriptors.c.o
  .debug_loclists
-                0x000016f0     0x173a CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.o
+                0x0000171f     0x173a CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.o
  .debug_loclists
-                0x00002e2a       0x53 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2040/pico_platform/platform.c.o
+                0x00002e59       0x53 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2040/pico_platform/platform.c.o
  .debug_loclists
-                0x00002e7d      0x36d CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/hardware_claim/claim.c.o
+                0x00002eac      0x36d CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/hardware_claim/claim.c.o
  .debug_loclists
-                0x000031ea      0x108 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_sync/sync.c.o
+                0x00003219      0x108 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_sync/sync.c.o
  .debug_loclists
-                0x000032f2       0x7d CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_sync_spin_lock/sync_spin_lock.c.o
+                0x00003321       0x7d CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_sync_spin_lock/sync_spin_lock.c.o
  .debug_loclists
-                0x0000336f     0x1011 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_irq/irq.c.o
+                0x0000339e     0x1011 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_irq/irq.c.o
  .debug_loclists
-                0x00004380       0x41 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/pico_sync/lock_core.c.o
+                0x000043af       0x41 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/pico_sync/lock_core.c.o
  .debug_loclists
-                0x000043c1      0xb00 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/pico_sync/mutex.c.o
+                0x000043f0      0xb00 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/pico_sync/mutex.c.o
  .debug_loclists
-                0x00004ec1       0xc5 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/pico_sync/critical_section.c.o
+                0x00004ef0       0xc5 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/pico_sync/critical_section.c.o
  .debug_loclists
-                0x00004f86     0x2997 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/pico_time/time.c.o
+                0x00004fb5     0x2997 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/pico_time/time.c.o
  .debug_loclists
-                0x0000791d     0x1995 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_timer/timer.c.o
+                0x0000794c     0x1995 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_timer/timer.c.o
  .debug_loclists
-                0x000092b2     0x2a5b CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.o
+                0x000092e1     0x2a5b CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.o
  .debug_loclists
-                0x0000bd0d      0x1cf CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_pll/pll.c.o
+                0x0000bd3c      0x1cf CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_pll/pll.c.o
  .debug_loclists
-                0x0000bedc       0x47 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_ticks/ticks.c.o
+                0x0000bf0b       0x47 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_ticks/ticks.c.o
  .debug_loclists
-                0x0000bf23      0x347 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.o
+                0x0000bf52      0x347 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.o
  .debug_loclists
-                0x0000c26a       0x48 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_xosc/xosc.c.o
+                0x0000c299       0x48 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_xosc/xosc.c.o
  .debug_loclists
-                0x0000c2b2       0x7e CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_runtime/runtime.c.o
+                0x0000c2e1       0x7e CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_runtime/runtime.c.o
  .debug_loclists
-                0x0000c330      0x14f CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.o
+                0x0000c35f      0x14f CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.o
  .debug_loclists
-                0x0000c47f       0x69 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init_clocks.c.o
+                0x0000c4ae       0x69 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init_clocks.c.o
  .debug_loclists
-                0x0000c4e8       0x3d CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_double/double_init_rom_rp2040.c.o
+                0x0000c517       0x3d CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_double/double_init_rom_rp2040.c.o
  .debug_loclists
-                0x0000c525       0x59 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_float/float_init_rom_rp2040.c.o
+                0x0000c554       0x59 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_float/float_init_rom_rp2040.c.o
  .debug_loclists
-                0x0000c57e     0x353d CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_printf/printf.c.o
+                0x0000c5ad     0x353d CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_printf/printf.c.o
  .debug_loclists
-                0x0000fabb      0x419 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_clib_interface/newlib_interface.c.o
+                0x0000faea      0x419 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_clib_interface/newlib_interface.c.o
  .debug_loclists
-                0x0000fed4      0xcc4 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_stdio/stdio.c.o
+                0x0000ff03      0xcc4 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_stdio/stdio.c.o
  .debug_loclists
-                0x00010b98      0x41e CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c.o
+                0x00010bc7      0x41e CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c.o
  .debug_loclists
-                0x00010fb6      0xb75 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_flash/flash.c.o
+                0x00010fe5      0xb75 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_flash/flash.c.o
  .debug_loclists
-                0x00011b2b     0x1e42 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.o
+                0x00011b5a     0x1e42 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.o
  .debug_loclists
-                0x0001396d      0xa85 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.o
+                0x0001399c      0xa85 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.o
  .debug_loclists
-                0x000143f2     0x2bca CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/device/usbd.c.o
+                0x00014421     0x2bca CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/device/usbd.c.o
  .debug_loclists
-                0x00016fbc     0x1fee CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/class/audio/audio_device.c.o
+                0x00016feb     0x1fee CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/class/audio/audio_device.c.o
  .debug_loclists
-                0x00018faa     0x1a59 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/tusb.c.o
+                0x00018fd9     0x1a59 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/tusb.c.o
  .debug_loclists
-                0x0001aa03     0x2227 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/common/tusb_fifo.c.o
+                0x0001aa32     0x2227 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/common/tusb_fifo.c.o
  .debug_loclists
-                0x0001cc2a      0x204 CMakeFiles/pico_usb_sound_card.dir/tinyusb/hw/bsp/rp2040/family.c.o
+                0x0001cc59      0x204 CMakeFiles/pico_usb_sound_card.dir/tinyusb/hw/bsp/rp2040/family.c.o
  .debug_loclists
-                0x0001ce2e     0x2047 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_pio/pio.c.o
+                0x0001ce5d     0x2047 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_pio/pio.c.o
  .debug_loclists
-                0x0001ee75       0x62 /usr/lib/gcc/arm-none-eabi/16.2.0/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libg.a(libc_a-strlen-stub.o)
+                0x0001eea4       0x62 /usr/lib/gcc/arm-none-eabi/16.2.0/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libg.a(libc_a-strlen-stub.o)
 
-.debug_aranges  0x00000000     0x1748
+.debug_aranges  0x00000000     0x1758
  .debug_aranges
-                0x00000000       0x80 CMakeFiles/pico_usb_sound_card.dir/main.c.o
+                0x00000000       0x90 CMakeFiles/pico_usb_sound_card.dir/main.c.o
  .debug_aranges
-                0x00000080       0x30 CMakeFiles/pico_usb_sound_card.dir/audio_i2s.c.o
+                0x00000090       0x30 CMakeFiles/pico_usb_sound_card.dir/audio_i2s.c.o
  .debug_aranges
-                0x000000b0       0x30 CMakeFiles/pico_usb_sound_card.dir/usb_descriptors.c.o
+                0x000000c0       0x30 CMakeFiles/pico_usb_sound_card.dir/usb_descriptors.c.o
  .debug_aranges
-                0x000000e0      0x110 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.o
+                0x000000f0      0x110 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.o
  .debug_aranges
-                0x000001f0       0x20 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2040/pico_platform/platform.c.o
+                0x00000200       0x20 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2040/pico_platform/platform.c.o
  .debug_aranges
-                0x00000210       0x28 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_platform_panic/panic.c.o
+                0x00000220       0x28 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_platform_panic/panic.c.o
  .debug_aranges
-                0x00000238       0x48 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/hardware_claim/claim.c.o
+                0x00000248       0x48 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/hardware_claim/claim.c.o
  .debug_aranges
-                0x00000280       0x48 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_sync/sync.c.o
+                0x00000290       0x48 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_sync/sync.c.o
  .debug_aranges
-                0x000002c8       0x28 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_sync_spin_lock/sync_spin_lock.c.o
+                0x000002d8       0x28 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_sync_spin_lock/sync_spin_lock.c.o
  .debug_aranges
-                0x000002f0       0xd0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_irq/irq.c.o
+                0x00000300       0xd0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_irq/irq.c.o
  .debug_aranges
-                0x000003c0       0x20 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/pico_sync/lock_core.c.o
+                0x000003d0       0x20 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/pico_sync/lock_core.c.o
  .debug_aranges
-                0x000003e0       0x98 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/pico_sync/mutex.c.o
+                0x000003f0       0x98 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/pico_sync/mutex.c.o
  .debug_aranges
-                0x00000478       0x30 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/pico_sync/critical_section.c.o
+                0x00000488       0x30 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/pico_sync/critical_section.c.o
  .debug_aranges
-                0x000004a8       0xe0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/pico_time/time.c.o
+                0x000004b8       0xe0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/pico_time/time.c.o
  .debug_aranges
-                0x00000588       0xf0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_timer/timer.c.o
+                0x00000598       0xf0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_timer/timer.c.o
  .debug_aranges
-                0x00000678       0xb0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.o
+                0x00000688       0xb0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.o
  .debug_aranges
-                0x00000728       0x28 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_pll/pll.c.o
+                0x00000738       0x28 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_pll/pll.c.o
  .debug_aranges
-                0x00000750       0x30 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_ticks/ticks.c.o
+                0x00000760       0x30 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_ticks/ticks.c.o
  .debug_aranges
-                0x00000780       0x40 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.o
+                0x00000790       0x40 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.o
  .debug_aranges
-                0x000007c0       0x30 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_xosc/xosc.c.o
+                0x000007d0       0x30 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_xosc/xosc.c.o
  .debug_aranges
-                0x000007f0       0x38 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_runtime/runtime.c.o
+                0x00000800       0x38 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_runtime/runtime.c.o
  .debug_aranges
-                0x00000828       0x48 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.o
+                0x00000838       0x48 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.o
  .debug_aranges
-                0x00000870       0x20 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init_clocks.c.o
+                0x00000880       0x20 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init_clocks.c.o
  .debug_aranges
-                0x00000890       0x60 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.o
+                0x000008a0       0x60 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.o
  .debug_aranges
-                0x000008f0       0x50 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_divider/divider_hardware.S.o
+                0x00000900       0x50 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_divider/divider_hardware.S.o
  .debug_aranges
-                0x00000940      0x150 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_double/double_aeabi_rp2040.S.o
+                0x00000950      0x150 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_double/double_aeabi_rp2040.S.o
  .debug_aranges
-                0x00000a90       0x20 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_double/double_init_rom_rp2040.c.o
+                0x00000aa0       0x20 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_double/double_init_rom_rp2040.c.o
  .debug_aranges
-                0x00000ab0       0xc8 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.o
+                0x00000ac0       0xc8 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.o
  .debug_aranges
-                0x00000b78       0x20 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.S.o
+                0x00000b88       0x20 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.S.o
  .debug_aranges
-                0x00000b98      0x138 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_float/float_aeabi_rp2040.S.o
+                0x00000ba8      0x138 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_float/float_aeabi_rp2040.S.o
  .debug_aranges
-                0x00000cd0       0x20 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_float/float_init_rom_rp2040.c.o
+                0x00000ce0       0x20 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_float/float_init_rom_rp2040.c.o
  .debug_aranges
-                0x00000cf0       0x50 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_float/float_v1_rom_shim_rp2040.S.o
+                0x00000d00       0x50 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_float/float_v1_rom_shim_rp2040.S.o
  .debug_aranges
-                0x00000d40       0x38 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.o
+                0x00000d50       0x38 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.o
  .debug_aranges
-                0x00000d78       0x18 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
+                0x00000d88       0x18 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
  .debug_aranges
-                0x00000d90       0x90 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_printf/printf.c.o
+                0x00000da0       0x90 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_printf/printf.c.o
  .debug_aranges
-                0x00000e20       0x28 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_crt0/crt0.S.o
+                0x00000e30       0x28 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_crt0/crt0.S.o
  .debug_aranges
-                0x00000e48       0xb0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_clib_interface/newlib_interface.c.o
+                0x00000e58       0xb0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_clib_interface/newlib_interface.c.o
  .debug_aranges
-                0x00000ef8       0xc8 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_stdio/stdio.c.o
+                0x00000f08       0xc8 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_stdio/stdio.c.o
  .debug_aranges
-                0x00000fc0       0x30 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c.o
+                0x00000fd0       0x30 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c.o
  .debug_aranges
-                0x00000ff0       0x68 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_flash/flash.c.o
+                0x00001000       0x68 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_flash/flash.c.o
  .debug_aranges
-                0x00001058       0xc0 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.o
+                0x00001068       0xc0 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.o
  .debug_aranges
-                0x00001118       0x68 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.o
+                0x00001128       0x68 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.o
  .debug_aranges
-                0x00001180      0x1d8 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/device/usbd.c.o
+                0x00001190      0x1d8 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/device/usbd.c.o
  .debug_aranges
-                0x00001358      0x100 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/class/audio/audio_device.c.o
+                0x00001368      0x100 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/class/audio/audio_device.c.o
  .debug_aranges
-                0x00001458       0xc0 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/tusb.c.o
+                0x00001468       0xc0 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/tusb.c.o
  .debug_aranges
-                0x00001518       0x98 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/common/tusb_fifo.c.o
+                0x00001528       0x98 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/common/tusb_fifo.c.o
  .debug_aranges
-                0x000015b0       0x70 CMakeFiles/pico_usb_sound_card.dir/tinyusb/hw/bsp/rp2040/family.c.o
+                0x000015c0       0x70 CMakeFiles/pico_usb_sound_card.dir/tinyusb/hw/bsp/rp2040/family.c.o
  .debug_aranges
-                0x00001620       0xe8 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_pio/pio.c.o
+                0x00001630       0xe8 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_pio/pio.c.o
  .debug_aranges
-                0x00001708       0x20 /usr/lib/gcc/arm-none-eabi/16.2.0/thumb/v6-m/nofp/libgcc.a(_dvmd_tls.o)
+                0x00001718       0x20 /usr/lib/gcc/arm-none-eabi/16.2.0/thumb/v6-m/nofp/libgcc.a(_dvmd_tls.o)
  .debug_aranges
-                0x00001728       0x20 /usr/lib/gcc/arm-none-eabi/16.2.0/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libg.a(libc_a-strlen-stub.o)
+                0x00001738       0x20 /usr/lib/gcc/arm-none-eabi/16.2.0/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libg.a(libc_a-strlen-stub.o)
 
 .debug_rnglists
-                0x00000000     0x5206
+                0x00000000     0x525c
  .debug_rnglists
-                0x00000000      0x300 CMakeFiles/pico_usb_sound_card.dir/main.c.o
+                0x00000000      0x356 CMakeFiles/pico_usb_sound_card.dir/main.c.o
  .debug_rnglists
-                0x00000300      0x104 CMakeFiles/pico_usb_sound_card.dir/audio_i2s.c.o
+                0x00000356      0x104 CMakeFiles/pico_usb_sound_card.dir/audio_i2s.c.o
  .debug_rnglists
-                0x00000404       0x45 CMakeFiles/pico_usb_sound_card.dir/usb_descriptors.c.o
+                0x0000045a       0x45 CMakeFiles/pico_usb_sound_card.dir/usb_descriptors.c.o
  .debug_rnglists
-                0x00000449      0x508 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.o
+                0x0000049f      0x508 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.o
  .debug_rnglists
-                0x00000951       0x13 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2040/pico_platform/platform.c.o
+                0x000009a7       0x13 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2040/pico_platform/platform.c.o
  .debug_rnglists
-                0x00000964       0x19 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_platform_panic/panic.c.o
+                0x000009ba       0x19 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_platform_panic/panic.c.o
  .debug_rnglists
-                0x0000097d       0xb6 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/hardware_claim/claim.c.o
+                0x000009d3       0xb6 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/hardware_claim/claim.c.o
  .debug_rnglists
-                0x00000a33       0x58 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_sync/sync.c.o
+                0x00000a89       0x58 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_sync/sync.c.o
  .debug_rnglists
-                0x00000a8b       0x3d CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_sync_spin_lock/sync_spin_lock.c.o
+                0x00000ae1       0x3d CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_sync_spin_lock/sync_spin_lock.c.o
  .debug_rnglists
-                0x00000ac8      0x3bf CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_irq/irq.c.o
+                0x00000b1e      0x3bf CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_irq/irq.c.o
  .debug_rnglists
-                0x00000e87       0x1f CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/pico_sync/lock_core.c.o
+                0x00000edd       0x1f CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/pico_sync/lock_core.c.o
  .debug_rnglists
-                0x00000ea6      0x30d CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/pico_sync/mutex.c.o
+                0x00000efc      0x30d CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/pico_sync/mutex.c.o
  .debug_rnglists
-                0x000011b3       0x2e CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/pico_sync/critical_section.c.o
+                0x00001209       0x2e CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/pico_sync/critical_section.c.o
  .debug_rnglists
-                0x000011e1      0x7c9 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/pico_time/time.c.o
+                0x00001237      0x7c9 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/pico_time/time.c.o
  .debug_rnglists
-                0x000019aa      0x2b3 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_timer/timer.c.o
+                0x00001a00      0x2b3 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_timer/timer.c.o
  .debug_rnglists
-                0x00001c5d      0x672 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.o
+                0x00001cb3      0x672 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.o
  .debug_rnglists
-                0x000022cf       0x32 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_pll/pll.c.o
+                0x00002325       0x32 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_pll/pll.c.o
  .debug_rnglists
-                0x00002301       0x2b CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_ticks/ticks.c.o
+                0x00002357       0x2b CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_ticks/ticks.c.o
  .debug_rnglists
-                0x0000232c      0x112 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.o
+                0x00002382      0x112 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.o
  .debug_rnglists
-                0x0000243e       0x1f CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_xosc/xosc.c.o
+                0x00002494       0x1f CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_xosc/xosc.c.o
  .debug_rnglists
-                0x0000245d       0x6d CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_runtime/runtime.c.o
+                0x000024b3       0x6d CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_runtime/runtime.c.o
  .debug_rnglists
-                0x000024ca       0x4a CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.o
+                0x00002520       0x4a CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.o
  .debug_rnglists
-                0x00002514       0x20 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init_clocks.c.o
+                0x0000256a       0x20 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init_clocks.c.o
  .debug_rnglists
-                0x00002534       0x43 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.o
+                0x0000258a       0x43 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.o
  .debug_rnglists
-                0x00002577       0x38 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_divider/divider_hardware.S.o
+                0x000025cd       0x38 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_divider/divider_hardware.S.o
  .debug_rnglists
-                0x000025af       0xf9 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_double/double_aeabi_rp2040.S.o
+                0x00002605       0xf9 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_double/double_aeabi_rp2040.S.o
  .debug_rnglists
-                0x000026a8       0x14 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_double/double_init_rom_rp2040.c.o
+                0x000026fe       0x14 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_double/double_init_rom_rp2040.c.o
  .debug_rnglists
-                0x000026bc       0x99 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.o
+                0x00002712       0x99 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.o
  .debug_rnglists
-                0x00002755       0xe5 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_float/float_aeabi_rp2040.S.o
+                0x000027ab       0xe5 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_float/float_aeabi_rp2040.S.o
  .debug_rnglists
-                0x0000283a       0x13 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_float/float_init_rom_rp2040.c.o
+                0x00002890       0x13 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_float/float_init_rom_rp2040.c.o
  .debug_rnglists
-                0x0000284d       0x38 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_float/float_v1_rom_shim_rp2040.S.o
+                0x000028a3       0x38 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_float/float_v1_rom_shim_rp2040.S.o
  .debug_rnglists
-                0x00002885       0x25 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.o
+                0x000028db       0x25 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.o
  .debug_rnglists
-                0x000028aa      0x2e2 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_printf/printf.c.o
+                0x00002900      0x2e2 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_printf/printf.c.o
  .debug_rnglists
-                0x00002b8c       0x1b CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_crt0/crt0.S.o
+                0x00002be2       0x1b CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_crt0/crt0.S.o
  .debug_rnglists
-                0x00002ba7       0x8b CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_clib_interface/newlib_interface.c.o
+                0x00002bfd       0x8b CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_clib_interface/newlib_interface.c.o
  .debug_rnglists
-                0x00002c32      0x2b0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_stdio/stdio.c.o
+                0x00002c88      0x2b0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_stdio/stdio.c.o
  .debug_rnglists
-                0x00002ee2       0x73 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c.o
+                0x00002f38       0x73 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c.o
  .debug_rnglists
-                0x00002f55      0x356 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_flash/flash.c.o
+                0x00002fab      0x356 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_flash/flash.c.o
  .debug_rnglists
-                0x000032ab      0x4be CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.o
+                0x00003301      0x4be CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.o
  .debug_rnglists
-                0x00003769       0xe0 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.o
+                0x000037bf       0xe0 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.o
  .debug_rnglists
-                0x00003849      0x7c2 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/device/usbd.c.o
+                0x0000389f      0x7c2 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/device/usbd.c.o
  .debug_rnglists
-                0x0000400b      0x500 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/class/audio/audio_device.c.o
+                0x00004061      0x500 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/class/audio/audio_device.c.o
  .debug_rnglists
-                0x0000450b      0x42d CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/tusb.c.o
+                0x00004561      0x42d CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/tusb.c.o
  .debug_rnglists
-                0x00004938      0x393 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/common/tusb_fifo.c.o
+                0x0000498e      0x393 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/common/tusb_fifo.c.o
  .debug_rnglists
-                0x00004ccb       0x8e CMakeFiles/pico_usb_sound_card.dir/tinyusb/hw/bsp/rp2040/family.c.o
+                0x00004d21       0x8e CMakeFiles/pico_usb_sound_card.dir/tinyusb/hw/bsp/rp2040/family.c.o
  .debug_rnglists
-                0x00004d59      0x49a CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_pio/pio.c.o
+                0x00004daf      0x49a CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_pio/pio.c.o
  .debug_rnglists
-                0x000051f3       0x13 /usr/lib/gcc/arm-none-eabi/16.2.0/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libg.a(libc_a-strlen-stub.o)
+                0x00005249       0x13 /usr/lib/gcc/arm-none-eabi/16.2.0/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libg.a(libc_a-strlen-stub.o)
 
-.debug_line     0x00000000    0x2783f
- .debug_line    0x00000000     0x11e7 CMakeFiles/pico_usb_sound_card.dir/main.c.o
- .debug_line    0x000011e7      0x846 CMakeFiles/pico_usb_sound_card.dir/audio_i2s.c.o
- .debug_line    0x00001a2d      0x6c4 CMakeFiles/pico_usb_sound_card.dir/usb_descriptors.c.o
- .debug_line    0x000020f1     0x1cc4 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.o
- .debug_line    0x00003db5      0x21a CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2040/pico_platform/platform.c.o
- .debug_line    0x00003fcf      0x218 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_platform_panic/panic.c.o
- .debug_line    0x000041e7      0x8f9 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/hardware_claim/claim.c.o
- .debug_line    0x00004ae0      0x48a CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_sync/sync.c.o
- .debug_line    0x00004f6a      0x374 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_sync_spin_lock/sync_spin_lock.c.o
- .debug_line    0x000052de     0x1886 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_irq/irq.c.o
- .debug_line    0x00006b64      0x2a1 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/pico_sync/lock_core.c.o
- .debug_line    0x00006e05     0x1c3c CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/pico_sync/mutex.c.o
- .debug_line    0x00008a41      0x3e4 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/pico_sync/critical_section.c.o
- .debug_line    0x00008e25     0x354d CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/pico_time/time.c.o
- .debug_line    0x0000c372     0x1eda CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_timer/timer.c.o
- .debug_line    0x0000e24c     0x2a45 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.o
- .debug_line    0x00010c91      0x4d7 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_pll/pll.c.o
- .debug_line    0x00011168      0x2fe CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_ticks/ticks.c.o
- .debug_line    0x00011466      0x40f CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.o
- .debug_line    0x00011875      0x340 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_xosc/xosc.c.o
- .debug_line    0x00011bb5      0x2e5 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_runtime/runtime.c.o
- .debug_line    0x00011e9a      0x78b CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.o
- .debug_line    0x00012625      0x561 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init_clocks.c.o
- .debug_line    0x00012b86      0x108 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.o
- .debug_line    0x00012c8e      0x2ee CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_divider/divider_hardware.S.o
- .debug_line    0x00012f7c      0x452 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_double/double_aeabi_rp2040.S.o
- .debug_line    0x000133ce      0x48c CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_double/double_init_rom_rp2040.c.o
- .debug_line    0x0001385a      0x66d CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.o
- .debug_line    0x00013ec7       0x61 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.S.o
- .debug_line    0x00013f28      0x3d2 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_float/float_aeabi_rp2040.S.o
- .debug_line    0x000142fa      0x35e CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_float/float_init_rom_rp2040.c.o
- .debug_line    0x00014658      0x195 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_float/float_v1_rom_shim_rp2040.S.o
- .debug_line    0x000147ed       0x94 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.o
- .debug_line    0x00014881      0x151 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
- .debug_line    0x000149d2     0x1ee0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_printf/printf.c.o
- .debug_line    0x000168b2       0xa3 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_crt0/crt0.S.o
- .debug_line    0x00016955      0x870 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_clib_interface/newlib_interface.c.o
- .debug_line    0x000171c5     0x13d2 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_stdio/stdio.c.o
- .debug_line    0x00018597      0x7f7 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c.o
- .debug_line    0x00018d8e      0xf3c CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_flash/flash.c.o
- .debug_line    0x00019cca     0x1f43 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.o
- .debug_line    0x0001bc0d     0x105f CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.o
- .debug_line    0x0001cc6c     0x3089 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/device/usbd.c.o
- .debug_line    0x0001fcf5     0x265b CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/class/audio/audio_device.c.o
- .debug_line    0x00022350     0x15c3 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/tusb.c.o
- .debug_line    0x00023913     0x1921 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/common/tusb_fifo.c.o
- .debug_line    0x00025234      0x745 CMakeFiles/pico_usb_sound_card.dir/tinyusb/hw/bsp/rp2040/family.c.o
- .debug_line    0x00025979     0x1c4c CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_pio/pio.c.o
- .debug_line    0x000275c5       0x4a /usr/lib/gcc/arm-none-eabi/16.2.0/thumb/v6-m/nofp/libgcc.a(_dvmd_tls.o)
- .debug_line    0x0002760f      0x230 /usr/lib/gcc/arm-none-eabi/16.2.0/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libg.a(libc_a-strlen-stub.o)
+.debug_line     0x00000000    0x279f2
+ .debug_line    0x00000000     0x139a CMakeFiles/pico_usb_sound_card.dir/main.c.o
+ .debug_line    0x0000139a      0x846 CMakeFiles/pico_usb_sound_card.dir/audio_i2s.c.o
+ .debug_line    0x00001be0      0x6c4 CMakeFiles/pico_usb_sound_card.dir/usb_descriptors.c.o
+ .debug_line    0x000022a4     0x1cc4 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.o
+ .debug_line    0x00003f68      0x21a CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2040/pico_platform/platform.c.o
+ .debug_line    0x00004182      0x218 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_platform_panic/panic.c.o
+ .debug_line    0x0000439a      0x8f9 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/hardware_claim/claim.c.o
+ .debug_line    0x00004c93      0x48a CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_sync/sync.c.o
+ .debug_line    0x0000511d      0x374 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_sync_spin_lock/sync_spin_lock.c.o
+ .debug_line    0x00005491     0x1886 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_irq/irq.c.o
+ .debug_line    0x00006d17      0x2a1 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/pico_sync/lock_core.c.o
+ .debug_line    0x00006fb8     0x1c3c CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/pico_sync/mutex.c.o
+ .debug_line    0x00008bf4      0x3e4 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/pico_sync/critical_section.c.o
+ .debug_line    0x00008fd8     0x354d CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/pico_time/time.c.o
+ .debug_line    0x0000c525     0x1eda CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_timer/timer.c.o
+ .debug_line    0x0000e3ff     0x2a45 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.o
+ .debug_line    0x00010e44      0x4d7 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_pll/pll.c.o
+ .debug_line    0x0001131b      0x2fe CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_ticks/ticks.c.o
+ .debug_line    0x00011619      0x40f CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.o
+ .debug_line    0x00011a28      0x340 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_xosc/xosc.c.o
+ .debug_line    0x00011d68      0x2e5 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_runtime/runtime.c.o
+ .debug_line    0x0001204d      0x78b CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.o
+ .debug_line    0x000127d8      0x561 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init_clocks.c.o
+ .debug_line    0x00012d39      0x108 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.o
+ .debug_line    0x00012e41      0x2ee CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_divider/divider_hardware.S.o
+ .debug_line    0x0001312f      0x452 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_double/double_aeabi_rp2040.S.o
+ .debug_line    0x00013581      0x48c CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_double/double_init_rom_rp2040.c.o
+ .debug_line    0x00013a0d      0x66d CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.o
+ .debug_line    0x0001407a       0x61 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.S.o
+ .debug_line    0x000140db      0x3d2 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_float/float_aeabi_rp2040.S.o
+ .debug_line    0x000144ad      0x35e CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_float/float_init_rom_rp2040.c.o
+ .debug_line    0x0001480b      0x195 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_float/float_v1_rom_shim_rp2040.S.o
+ .debug_line    0x000149a0       0x94 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.o
+ .debug_line    0x00014a34      0x151 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
+ .debug_line    0x00014b85     0x1ee0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_printf/printf.c.o
+ .debug_line    0x00016a65       0xa3 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_crt0/crt0.S.o
+ .debug_line    0x00016b08      0x870 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_clib_interface/newlib_interface.c.o
+ .debug_line    0x00017378     0x13d2 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_stdio/stdio.c.o
+ .debug_line    0x0001874a      0x7f7 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c.o
+ .debug_line    0x00018f41      0xf3c CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_flash/flash.c.o
+ .debug_line    0x00019e7d     0x1f43 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.o
+ .debug_line    0x0001bdc0     0x105f CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.o
+ .debug_line    0x0001ce1f     0x3089 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/device/usbd.c.o
+ .debug_line    0x0001fea8     0x265b CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/class/audio/audio_device.c.o
+ .debug_line    0x00022503     0x15c3 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/tusb.c.o
+ .debug_line    0x00023ac6     0x1921 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/common/tusb_fifo.c.o
+ .debug_line    0x000253e7      0x745 CMakeFiles/pico_usb_sound_card.dir/tinyusb/hw/bsp/rp2040/family.c.o
+ .debug_line    0x00025b2c     0x1c4c CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_pio/pio.c.o
+ .debug_line    0x00027778       0x4a /usr/lib/gcc/arm-none-eabi/16.2.0/thumb/v6-m/nofp/libgcc.a(_dvmd_tls.o)
+ .debug_line    0x000277c2      0x230 /usr/lib/gcc/arm-none-eabi/16.2.0/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libg.a(libc_a-strlen-stub.o)
 
-.debug_str      0x00000000     0x9ba1
- .debug_str     0x00000000     0x9ba1 CMakeFiles/pico_usb_sound_card.dir/main.c.o
-                               0x18ed (size before relaxing)
- .debug_str     0x00009ba1        0x0 CMakeFiles/pico_usb_sound_card.dir/audio_i2s.c.o
+.debug_str      0x00000000     0x9bbf
+ .debug_str     0x00000000     0x9bbf CMakeFiles/pico_usb_sound_card.dir/main.c.o
+                               0x19be (size before relaxing)
+ .debug_str     0x00009bbf        0x0 CMakeFiles/pico_usb_sound_card.dir/audio_i2s.c.o
                                 0xd4d (size before relaxing)
- .debug_str     0x00009ba1        0x0 CMakeFiles/pico_usb_sound_card.dir/usb_descriptors.c.o
+ .debug_str     0x00009bbf        0x0 CMakeFiles/pico_usb_sound_card.dir/usb_descriptors.c.o
                                0x1379 (size before relaxing)
- .debug_str     0x00009ba1        0x0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.o
+ .debug_str     0x00009bbf        0x0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.o
                                 0xccd (size before relaxing)
- .debug_str     0x00009ba1        0x0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2040/pico_platform/platform.c.o
+ .debug_str     0x00009bbf        0x0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2040/pico_platform/platform.c.o
                                 0x1fe (size before relaxing)
- .debug_str     0x00009ba1        0x0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_platform_panic/panic.c.o
+ .debug_str     0x00009bbf        0x0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_platform_panic/panic.c.o
                                 0x205 (size before relaxing)
- .debug_str     0x00009ba1        0x0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/hardware_claim/claim.c.o
+ .debug_str     0x00009bbf        0x0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/hardware_claim/claim.c.o
                                 0x388 (size before relaxing)
- .debug_str     0x00009ba1        0x0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_sync/sync.c.o
+ .debug_str     0x00009bbf        0x0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_sync/sync.c.o
                                 0x331 (size before relaxing)
- .debug_str     0x00009ba1        0x0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_sync_spin_lock/sync_spin_lock.c.o
+ .debug_str     0x00009bbf        0x0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_sync_spin_lock/sync_spin_lock.c.o
                                 0x244 (size before relaxing)
- .debug_str     0x00009ba1        0x0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_irq/irq.c.o
+ .debug_str     0x00009bbf        0x0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_irq/irq.c.o
                                 0xb03 (size before relaxing)
- .debug_str     0x00009ba1        0x0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/pico_sync/lock_core.c.o
+ .debug_str     0x00009bbf        0x0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/pico_sync/lock_core.c.o
                                 0x210 (size before relaxing)
- .debug_str     0x00009ba1        0x0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/pico_sync/mutex.c.o
+ .debug_str     0x00009bbf        0x0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/pico_sync/mutex.c.o
                                 0x80b (size before relaxing)
- .debug_str     0x00009ba1        0x0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/pico_sync/critical_section.c.o
+ .debug_str     0x00009bbf        0x0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/pico_sync/critical_section.c.o
                                 0x2d0 (size before relaxing)
- .debug_str     0x00009ba1        0x0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/pico_time/time.c.o
+ .debug_str     0x00009bbf        0x0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/pico_time/time.c.o
                                0x11e8 (size before relaxing)
- .debug_str     0x00009ba1        0x0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_timer/timer.c.o
+ .debug_str     0x00009bbf        0x0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_timer/timer.c.o
                                 0xa33 (size before relaxing)
- .debug_str     0x00009ba1        0x0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.o
+ .debug_str     0x00009bbf        0x0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.o
                                 0xed5 (size before relaxing)
- .debug_str     0x00009ba1        0x0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_pll/pll.c.o
+ .debug_str     0x00009bbf        0x0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_pll/pll.c.o
                                 0x46f (size before relaxing)
- .debug_str     0x00009ba1        0x0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_ticks/ticks.c.o
+ .debug_str     0x00009bbf        0x0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_ticks/ticks.c.o
                                 0x292 (size before relaxing)
- .debug_str     0x00009ba1        0x0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.o
+ .debug_str     0x00009bbf        0x0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.o
                                 0x357 (size before relaxing)
- .debug_str     0x00009ba1        0x0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_xosc/xosc.c.o
+ .debug_str     0x00009bbf        0x0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_xosc/xosc.c.o
                                 0x247 (size before relaxing)
- .debug_str     0x00009ba1        0x0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_runtime/runtime.c.o
+ .debug_str     0x00009bbf        0x0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_runtime/runtime.c.o
                                 0x297 (size before relaxing)
- .debug_str     0x00009ba1        0x0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.o
+ .debug_str     0x00009bbf        0x0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.o
                                 0x7ca (size before relaxing)
- .debug_str     0x00009ba1        0x0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init_clocks.c.o
+ .debug_str     0x00009bbf        0x0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init_clocks.c.o
                                 0x49f (size before relaxing)
- .debug_str     0x00009ba1        0x0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.o
+ .debug_str     0x00009bbf        0x0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.o
                                  0x7f (size before relaxing)
- .debug_str     0x00009ba1        0x0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_divider/divider_hardware.S.o
+ .debug_str     0x00009bbf        0x0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_divider/divider_hardware.S.o
                                  0x82 (size before relaxing)
- .debug_str     0x00009ba1        0x0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_double/double_aeabi_rp2040.S.o
+ .debug_str     0x00009bbf        0x0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_double/double_aeabi_rp2040.S.o
                                  0x84 (size before relaxing)
- .debug_str     0x00009ba1        0x0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_double/double_init_rom_rp2040.c.o
+ .debug_str     0x00009bbf        0x0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_double/double_init_rom_rp2040.c.o
                                 0x2cd (size before relaxing)
- .debug_str     0x00009ba1        0x0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.o
+ .debug_str     0x00009bbf        0x0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.o
                                  0x8a (size before relaxing)
- .debug_str     0x00009ba1        0x0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.S.o
+ .debug_str     0x00009bbf        0x0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.S.o
                                  0x88 (size before relaxing)
- .debug_str     0x00009ba1        0x0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_float/float_aeabi_rp2040.S.o
+ .debug_str     0x00009bbf        0x0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_float/float_aeabi_rp2040.S.o
                                  0x82 (size before relaxing)
- .debug_str     0x00009ba1        0x0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_float/float_init_rom_rp2040.c.o
+ .debug_str     0x00009bbf        0x0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_float/float_init_rom_rp2040.c.o
                                 0x2b2 (size before relaxing)
- .debug_str     0x00009ba1        0x0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_float/float_v1_rom_shim_rp2040.S.o
+ .debug_str     0x00009bbf        0x0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_float/float_v1_rom_shim_rp2040.S.o
                                  0x88 (size before relaxing)
- .debug_str     0x00009ba1        0x0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.o
+ .debug_str     0x00009bbf        0x0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.o
                                  0x7f (size before relaxing)
- .debug_str     0x00009ba1        0x0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
+ .debug_str     0x00009bbf        0x0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
                                 0x401 (size before relaxing)
- .debug_str     0x00009ba1        0x0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_printf/printf.c.o
+ .debug_str     0x00009bbf        0x0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_printf/printf.c.o
                                 0x4e9 (size before relaxing)
- .debug_str     0x00009ba1        0x0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_crt0/crt0.S.o
+ .debug_str     0x00009bbf        0x0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_crt0/crt0.S.o
                                  0x73 (size before relaxing)
- .debug_str     0x00009ba1        0x0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_clib_interface/newlib_interface.c.o
+ .debug_str     0x00009bbf        0x0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_clib_interface/newlib_interface.c.o
                                 0x786 (size before relaxing)
- .debug_str     0x00009ba1        0x0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_stdio/stdio.c.o
+ .debug_str     0x00009bbf        0x0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_stdio/stdio.c.o
                                 0xb07 (size before relaxing)
- .debug_str     0x00009ba1        0x0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c.o
+ .debug_str     0x00009bbf        0x0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c.o
                                 0x276 (size before relaxing)
- .debug_str     0x00009ba1        0x0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_flash/flash.c.o
+ .debug_str     0x00009bbf        0x0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_flash/flash.c.o
                                 0x822 (size before relaxing)
- .debug_str     0x00009ba1        0x0 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.o
+ .debug_str     0x00009bbf        0x0 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.o
                                0x1446 (size before relaxing)
- .debug_str     0x00009ba1        0x0 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.o
+ .debug_str     0x00009bbf        0x0 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.o
                                 0xf73 (size before relaxing)
- .debug_str     0x00009ba1        0x0 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/device/usbd.c.o
+ .debug_str     0x00009bbf        0x0 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/device/usbd.c.o
                                0x1d0a (size before relaxing)
- .debug_str     0x00009ba1        0x0 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/class/audio/audio_device.c.o
+ .debug_str     0x00009bbf        0x0 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/class/audio/audio_device.c.o
                                0x1adf (size before relaxing)
- .debug_str     0x00009ba1        0x0 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/tusb.c.o
+ .debug_str     0x00009bbf        0x0 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/tusb.c.o
                                 0xec7 (size before relaxing)
- .debug_str     0x00009ba1        0x0 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/common/tusb_fifo.c.o
+ .debug_str     0x00009bbf        0x0 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/common/tusb_fifo.c.o
                                 0x602 (size before relaxing)
- .debug_str     0x00009ba1        0x0 CMakeFiles/pico_usb_sound_card.dir/tinyusb/hw/bsp/rp2040/family.c.o
+ .debug_str     0x00009bbf        0x0 CMakeFiles/pico_usb_sound_card.dir/tinyusb/hw/bsp/rp2040/family.c.o
                                 0x7a5 (size before relaxing)
- .debug_str     0x00009ba1        0x0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_pio/pio.c.o
+ .debug_str     0x00009bbf        0x0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_pio/pio.c.o
                                0x110f (size before relaxing)
- .debug_str     0x00009ba1        0x0 /usr/lib/gcc/arm-none-eabi/16.2.0/thumb/v6-m/nofp/libgcc.a(_dvmd_tls.o)
+ .debug_str     0x00009bbf        0x0 /usr/lib/gcc/arm-none-eabi/16.2.0/thumb/v6-m/nofp/libgcc.a(_dvmd_tls.o)
                                  0xba (size before relaxing)
- .debug_str     0x00009ba1        0x0 /usr/lib/gcc/arm-none-eabi/16.2.0/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libg.a(libc_a-strlen-stub.o)
+ .debug_str     0x00009bbf        0x0 /usr/lib/gcc/arm-none-eabi/16.2.0/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libg.a(libc_a-strlen-stub.o)
                                 0x1d7 (size before relaxing)
 
 .comment        0x00000000       0x3c
@@ -5365,46 +5376,46 @@ LOAD linker stubs
  .ARM.attributes
                 0x00000848       0x2c /usr/lib/gcc/arm-none-eabi/16.2.0/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libg.a(libc_a-strlen-stub.o)
 
-.debug_frame    0x00000000     0x3098
- .debug_frame   0x00000000      0x148 CMakeFiles/pico_usb_sound_card.dir/main.c.o
- .debug_frame   0x00000148       0x74 CMakeFiles/pico_usb_sound_card.dir/audio_i2s.c.o
- .debug_frame   0x000001bc       0x4c CMakeFiles/pico_usb_sound_card.dir/usb_descriptors.c.o
- .debug_frame   0x00000208      0x2ac CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.o
- .debug_frame   0x000004b4       0x20 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2040/pico_platform/platform.c.o
- .debug_frame   0x000004d4       0x44 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_platform_panic/panic.c.o
- .debug_frame   0x00000518       0x9c CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/hardware_claim/claim.c.o
- .debug_frame   0x000005b4       0xa4 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_sync/sync.c.o
- .debug_frame   0x00000658       0x30 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_sync_spin_lock/sync_spin_lock.c.o
- .debug_frame   0x00000688      0x1f4 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_irq/irq.c.o
- .debug_frame   0x0000087c       0x20 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/pico_sync/lock_core.c.o
- .debug_frame   0x0000089c      0x1e0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/pico_sync/mutex.c.o
- .debug_frame   0x00000a7c       0x50 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/pico_sync/critical_section.c.o
- .debug_frame   0x00000acc      0x2d4 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/pico_time/time.c.o
- .debug_frame   0x00000da0      0x2b8 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_timer/timer.c.o
- .debug_frame   0x00001058      0x26c CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.o
- .debug_frame   0x000012c4       0x44 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_pll/pll.c.o
- .debug_frame   0x00001308       0x40 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_ticks/ticks.c.o
- .debug_frame   0x00001348       0xa0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.o
- .debug_frame   0x000013e8       0x40 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_xosc/xosc.c.o
- .debug_frame   0x00001428       0x70 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_runtime/runtime.c.o
- .debug_frame   0x00001498       0x84 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.o
- .debug_frame   0x0000151c       0x2c CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init_clocks.c.o
- .debug_frame   0x00001548       0x2c CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_double/double_init_rom_rp2040.c.o
- .debug_frame   0x00001574       0x28 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_float/float_init_rom_rp2040.c.o
- .debug_frame   0x0000159c      0x1e4 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_printf/printf.c.o
- .debug_frame   0x00001780      0x198 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_clib_interface/newlib_interface.c.o
- .debug_frame   0x00001918      0x294 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_stdio/stdio.c.o
- .debug_frame   0x00001bac       0x5c CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c.o
- .debug_frame   0x00001c08      0x134 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_flash/flash.c.o
- .debug_frame   0x00001d3c      0x254 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.o
- .debug_frame   0x00001f90      0x130 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.o
- .debug_frame   0x000020c0      0x4c0 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/device/usbd.c.o
- .debug_frame   0x00002580      0x294 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/class/audio/audio_device.c.o
- .debug_frame   0x00002814      0x220 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/tusb.c.o
- .debug_frame   0x00002a34      0x1f4 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/common/tusb_fifo.c.o
- .debug_frame   0x00002c28       0xf0 CMakeFiles/pico_usb_sound_card.dir/tinyusb/hw/bsp/rp2040/family.c.o
- .debug_frame   0x00002d18      0x360 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_pio/pio.c.o
- .debug_frame   0x00003078       0x20 /usr/lib/gcc/arm-none-eabi/16.2.0/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libg.a(libc_a-strlen-stub.o)
+.debug_frame    0x00000000     0x309c
+ .debug_frame   0x00000000      0x14c CMakeFiles/pico_usb_sound_card.dir/main.c.o
+ .debug_frame   0x0000014c       0x74 CMakeFiles/pico_usb_sound_card.dir/audio_i2s.c.o
+ .debug_frame   0x000001c0       0x4c CMakeFiles/pico_usb_sound_card.dir/usb_descriptors.c.o
+ .debug_frame   0x0000020c      0x2ac CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.o
+ .debug_frame   0x000004b8       0x20 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2040/pico_platform/platform.c.o
+ .debug_frame   0x000004d8       0x44 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_platform_panic/panic.c.o
+ .debug_frame   0x0000051c       0x9c CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/hardware_claim/claim.c.o
+ .debug_frame   0x000005b8       0xa4 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_sync/sync.c.o
+ .debug_frame   0x0000065c       0x30 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_sync_spin_lock/sync_spin_lock.c.o
+ .debug_frame   0x0000068c      0x1f4 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_irq/irq.c.o
+ .debug_frame   0x00000880       0x20 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/pico_sync/lock_core.c.o
+ .debug_frame   0x000008a0      0x1e0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/pico_sync/mutex.c.o
+ .debug_frame   0x00000a80       0x50 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/pico_sync/critical_section.c.o
+ .debug_frame   0x00000ad0      0x2d4 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/common/pico_time/time.c.o
+ .debug_frame   0x00000da4      0x2b8 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_timer/timer.c.o
+ .debug_frame   0x0000105c      0x26c CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.o
+ .debug_frame   0x000012c8       0x44 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_pll/pll.c.o
+ .debug_frame   0x0000130c       0x40 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_ticks/ticks.c.o
+ .debug_frame   0x0000134c       0xa0 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.o
+ .debug_frame   0x000013ec       0x40 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_xosc/xosc.c.o
+ .debug_frame   0x0000142c       0x70 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_runtime/runtime.c.o
+ .debug_frame   0x0000149c       0x84 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.o
+ .debug_frame   0x00001520       0x2c CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init_clocks.c.o
+ .debug_frame   0x0000154c       0x2c CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_double/double_init_rom_rp2040.c.o
+ .debug_frame   0x00001578       0x28 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_float/float_init_rom_rp2040.c.o
+ .debug_frame   0x000015a0      0x1e4 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_printf/printf.c.o
+ .debug_frame   0x00001784      0x198 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_clib_interface/newlib_interface.c.o
+ .debug_frame   0x0000191c      0x294 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_stdio/stdio.c.o
+ .debug_frame   0x00001bb0       0x5c CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c.o
+ .debug_frame   0x00001c0c      0x134 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_flash/flash.c.o
+ .debug_frame   0x00001d40      0x254 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.o
+ .debug_frame   0x00001f94      0x130 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.o
+ .debug_frame   0x000020c4      0x4c0 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/device/usbd.c.o
+ .debug_frame   0x00002584      0x294 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/class/audio/audio_device.c.o
+ .debug_frame   0x00002818      0x220 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/tusb.c.o
+ .debug_frame   0x00002a38      0x1f4 CMakeFiles/pico_usb_sound_card.dir/tinyusb/src/common/tusb_fifo.c.o
+ .debug_frame   0x00002c2c       0xf0 CMakeFiles/pico_usb_sound_card.dir/tinyusb/hw/bsp/rp2040/family.c.o
+ .debug_frame   0x00002d1c      0x360 CMakeFiles/pico_usb_sound_card.dir/pico-sdk/src/rp2_common/hardware_pio/pio.c.o
+ .debug_frame   0x0000307c       0x20 /usr/lib/gcc/arm-none-eabi/16.2.0/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libg.a(libc_a-strlen-stub.o)
 
 .debug_line_str
                 0x00000000      0x32a

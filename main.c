@@ -94,6 +94,26 @@ void tud_resume_cb(void) {
     blink_interval_ms = tud_mounted() ? BLINK_MOUNTED : BLINK_NOT_MOUNTED;
 }
 
+bool tud_audio_set_itf_cb(uint8_t rhport, tusb_control_request_t const *p_request) {
+    (void) rhport;
+    uint8_t const itf = tu_u16_low(p_request->wIndex);
+    uint8_t const alt = tu_u16_low(p_request->wValue);
+    if (itf == ITF_NUM_AUDIO_STREAMING && alt != 0) {
+        blink_interval_ms = BLINK_STREAMING;
+    }
+    return true;
+}
+
+bool tud_audio_set_itf_close_EP_cb(uint8_t rhport, tusb_control_request_t const *p_request) {
+    (void) rhport;
+    uint8_t const itf = tu_u16_low(p_request->wIndex);
+    uint8_t const alt = tu_u16_low(p_request->wValue);
+    if (itf == ITF_NUM_AUDIO_STREAMING && alt == 0) {
+        blink_interval_ms = BLINK_MOUNTED;
+    }
+    return true;
+}
+
 /*------------- Callback Audio Class (UAC1 — Windows 7) -------------*/
 
 void tud_audio_feedback_params_cb(uint8_t func_id, uint8_t alt_itf, audio_feedback_params_t* feedback_param) {
@@ -103,26 +123,20 @@ void tud_audio_feedback_params_cb(uint8_t func_id, uint8_t alt_itf, audio_feedba
     feedback_param->sample_freq = current_sample_rate;
 }
 
-// Callback saat paket audio diterima dari Komputer via USB
-// Gunakan post_read: pada titik ini data paket sudah dimasukkan TinyUSB ke FIFO.
-bool tud_audio_rx_done_post_read_cb(uint8_t rhport, uint16_t n_bytes_received, uint8_t func_id, uint8_t ep_out, uint8_t cur_alt_setting) {
-    (void)rhport;
-    (void)func_id;
-    (void)ep_out;
-    (void)cur_alt_setting;
+// TinyUSB 0.21+: data iso masuk ke FIFO, lalu ISR ini dipanggil (bukan rx_done_post_read_cb).
+bool tud_audio_rx_done_isr(uint8_t rhport, uint16_t n_bytes_received, uint8_t func_id, uint8_t ep_out, uint8_t cur_alt_setting) {
+    (void) rhport;
+    (void) n_bytes_received;
+    (void) func_id;
+    (void) ep_out;
+    (void) cur_alt_setting;
+    return true;
+}
 
-    last_packet_time_ms = to_ms_since_boot(get_absolute_time());
-
-    int16_t packet_buffer[CFG_TUD_AUDIO_FUNC_1_EP_OUT_SZ_MAX / 2];
-    // Batasi agar tidak melebihi ukuran buffer (mencegah stack overflow)
-    uint16_t to_read = n_bytes_received;
-    if (to_read > sizeof(packet_buffer)) to_read = sizeof(packet_buffer);
-    uint16_t bytes_read = tud_audio_read(packet_buffer, to_read);
-    uint16_t sample_frames = bytes_read / 4; // 2 byte Left, 2 byte Right
-
+static void process_usb_audio_samples(const int16_t *samples, uint16_t sample_frames) {
     for (uint16_t i = 0; i < sample_frames; i++) {
-        int16_t l = packet_buffer[i * 2 + 0];
-        int16_t r = packet_buffer[i * 2 + 1];
+        int16_t l = samples[i * 2 + 0];
+        int16_t r = samples[i * 2 + 1];
 
         if (mute[0] || mute[1] || mute[2]) {
             l = 0;
@@ -137,8 +151,25 @@ bool tud_audio_rx_done_post_read_cb(uint8_t rhport, uint16_t n_bytes_received, u
 
         ring_buffer_push(&audio_rb, l, r);
     }
+}
 
-    return true;
+// Tarik audio dari FIFO TinyUSB (dipanggil dari main loop, seperti contoh uac2_speaker_fb).
+static void usb_audio_task(void) {
+    int16_t packet_buffer[CFG_TUD_AUDIO_FUNC_1_EP_OUT_SZ_MAX / 2];
+
+    while (tud_audio_available() > 0) {
+        uint16_t to_read = tud_audio_available();
+        if (to_read > sizeof(packet_buffer)) {
+            to_read = sizeof(packet_buffer);
+        }
+        uint16_t bytes_read = tud_audio_read(packet_buffer, to_read);
+        if (bytes_read == 0) {
+            break;
+        }
+
+        last_packet_time_ms = to_ms_since_boot(get_absolute_time());
+        process_usb_audio_samples(packet_buffer, bytes_read / 4);
+    }
 }
 
 static bool uac1_set_req_ep(tusb_control_request_t const *p_request, uint8_t *p_buff) {
@@ -270,10 +301,10 @@ int main(void) {
 
 
     while (1) {
-        // 1. Jalankan proses USB Stack TinyUSB
         tud_task();
+        usb_audio_task();
 
-        // 2. Alirkan sampel audio dari ring buffer ke hardware I2S PIO PCM5102A
+        // Alirkan sampel audio dari ring buffer ke hardware I2S PIO PCM5102A
         while (audio_i2s_can_put_sample(&i2s)) {
             int16_t left = 0, right = 0;
             // Jika ada data audio dari USB, kirimkan.
