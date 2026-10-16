@@ -34,9 +34,9 @@ static uint32_t blink_interval_ms = BLINK_NOT_MOUNTED;
 static i2s_config_t i2s;
 static audio_ring_buffer_t audio_rb;
 
-// Kontrol Volume & Mute dari Host OS (Windows/Mac/Linux)
-static bool is_muted = false;
-static int16_t volume_master = 256; // 256 = 100% volume (0 dB)
+// Kontrol Volume & Mute dari Host OS (Windows/Mac/Linux), index 0 = master
+static int8_t mute[CFG_TUD_AUDIO_FUNC_1_N_CHANNELS_RX + 1];
+static int16_t volume[CFG_TUD_AUDIO_FUNC_1_N_CHANNELS_RX + 1]; // satuan 1/256 dB, 0 = 0 dB
 static uint32_t last_packet_time_ms = 0;
 
 /*------------- Inisialisasi LED -------------*/
@@ -117,13 +117,28 @@ bool tud_audio_rx_done_post_read_cb(uint8_t rhport, uint16_t n_bytes_received, u
         int16_t l = packet_buffer[i * 2 + 0];
         int16_t r = packet_buffer[i * 2 + 1];
 
-        // Terapkan Mute & Volume
-        if (is_muted) {
+        // Terapkan Mute & Volume (master + per-channel seperti yang diharapkan UAC2/Windows)
+        if (mute[0] || mute[1] || mute[2]) {
             l = 0;
             r = 0;
-        } else if (volume_master < 256) {
-            l = (int16_t)((l * volume_master) >> 8);
-            r = (int16_t)((r * volume_master) >> 8);
+        } else {
+            int16_t vol_db = volume[0];
+            if (vol_db < 0) {
+                int32_t gain = 256 + ((int32_t)vol_db / 96);
+                if (gain < 0) gain = 0;
+                l = (int16_t)((l * gain) >> 8);
+                r = (int16_t)((r * gain) >> 8);
+            }
+            if (volume[1] < 0) {
+                int32_t gain = 256 + ((int32_t)volume[1] / 96);
+                if (gain < 0) gain = 0;
+                l = (int16_t)((l * gain) >> 8);
+            }
+            if (volume[2] < 0) {
+                int32_t gain = 256 + ((int32_t)volume[2] / 96);
+                if (gain < 0) gain = 0;
+                r = (int16_t)((r * gain) >> 8);
+            }
         }
 
         ring_buffer_push(&audio_rb, l, r);
@@ -158,8 +173,15 @@ bool tud_audio_clock_get_request(uint8_t rhport, audio_control_request_t const *
 
 bool tud_audio_clock_set_request(uint8_t rhport, audio_control_request_t const *request, uint8_t const *buf) {
     (void)rhport;
-    (void)buf;
-    if (request->bEntityID == UAC2_ENTITY_CLOCK && request->bControlSelector == AUDIO_CS_CTRL_SAM_FREQ) {
+
+    if (request->bEntityID != UAC2_ENTITY_CLOCK || request->bRequest != AUDIO_CS_REQ_CUR) {
+        return false;
+    }
+
+    if (request->bControlSelector == AUDIO_CS_CTRL_SAM_FREQ) {
+        if (request->wLength != sizeof(audio_control_cur_4_t)) return false;
+        uint32_t host_rate = (uint32_t)((audio_control_cur_4_t const *)buf)->bCur;
+        (void)host_rate;
         return true;
     }
     return false;
@@ -169,23 +191,25 @@ bool tud_audio_clock_set_request(uint8_t rhport, audio_control_request_t const *
 bool tud_audio_feature_unit_get_request(uint8_t rhport, audio_control_request_t const *request) {
     if (request->bEntityID != UAC2_ENTITY_FEATURE_UNIT) return false;
 
+    uint8_t ch = request->bChannelNumber;
+    if (ch > CFG_TUD_AUDIO_FUNC_1_N_CHANNELS_RX) return false;
+
     if (request->bControlSelector == AUDIO_FU_CTRL_MUTE && request->bRequest == AUDIO_CS_REQ_CUR) {
-        audio_control_cur_1_t cur_mute = { .bCur = is_muted ? 1 : 0 };
+        audio_control_cur_1_t cur_mute = { .bCur = mute[ch] };
         return tud_audio_buffer_and_schedule_control_xfer(rhport, (tusb_control_request_t const *)request, &cur_mute, sizeof(cur_mute));
     } else if (request->bControlSelector == AUDIO_FU_CTRL_VOLUME) {
         if (request->bRequest == AUDIO_CS_REQ_RANGE) {
             audio_control_range_2_n_t(1) range_vol = {
                 .wNumSubRanges = tu_htole16(1),
                 .subrange[0] = {
-                    .bMin = tu_htole16((int16_t)(-96 * 256)), // -96 dB
-                    .bMax = tu_htole16(0),                   // 0 dB
-                    .bRes = tu_htole16(256)                  // Step 1 dB
+                    .bMin = tu_htole16((int16_t)(-50 * 256)), // -50 dB
+                    .bMax = tu_htole16(0),                    // 0 dB
+                    .bRes = tu_htole16(256)                   // Step 1 dB
                 }
             };
             return tud_audio_buffer_and_schedule_control_xfer(rhport, (tusb_control_request_t const *)request, &range_vol, sizeof(range_vol));
         } else if (request->bRequest == AUDIO_CS_REQ_CUR) {
-            int16_t vol_db = (volume_master >= 256) ? 0 : (int16_t)((volume_master - 256) * 96);
-            audio_control_cur_2_t cur_vol = { .bCur = tu_htole16(vol_db) };
+            audio_control_cur_2_t cur_vol = { .bCur = tu_htole16(volume[ch]) };
             return tud_audio_buffer_and_schedule_control_xfer(rhport, (tusb_control_request_t const *)request, &cur_vol, sizeof(cur_vol));
         }
     }
@@ -196,20 +220,14 @@ bool tud_audio_feature_unit_set_request(uint8_t rhport, audio_control_request_t 
     (void)rhport;
     if (request->bEntityID != UAC2_ENTITY_FEATURE_UNIT) return false;
 
+    uint8_t ch = request->bChannelNumber;
+    if (ch > CFG_TUD_AUDIO_FUNC_1_N_CHANNELS_RX) return false;
+
     if (request->bControlSelector == AUDIO_FU_CTRL_MUTE && request->bRequest == AUDIO_CS_REQ_CUR) {
-        is_muted = ((audio_control_cur_1_t const *)buf)->bCur != 0;
+        mute[ch] = ((audio_control_cur_1_t const *)buf)->bCur;
         return true;
     } else if (request->bControlSelector == AUDIO_FU_CTRL_VOLUME && request->bRequest == AUDIO_CS_REQ_CUR) {
-        int16_t vol_db = (int16_t)tu_le16toh(((audio_control_cur_2_t const *)buf)->bCur);
-        if (vol_db >= 0) {
-            volume_master = 256;
-        } else if (vol_db <= -96 * 256) {
-            volume_master = 0;
-        } else {
-            // Pemetaan linear sederhana
-            volume_master = (int16_t)(256 + (vol_db / 96));
-            if (volume_master < 0) volume_master = 0;
-        }
+        volume[ch] = (int16_t)tu_le16toh(((audio_control_cur_2_t const *)buf)->bCur);
         return true;
     }
     return false;

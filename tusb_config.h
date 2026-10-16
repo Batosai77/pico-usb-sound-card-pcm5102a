@@ -53,7 +53,6 @@ extern "C" {
 #define CFG_TUD_AUDIO_ENABLE_EP_OUT                      1
 #define CFG_TUD_AUDIO_ENABLE_FEEDBACK_EP                 1
 
-#define CFG_TUD_AUDIO_FUNC_1_SAMPLE_RATE                 48000
 #define CFG_TUD_AUDIO_FUNC_1_MAX_SAMPLE_RATE             48000
 #define CFG_TUD_AUDIO_FUNC_1_N_CHANNELS_RX               2
 #define CFG_TUD_AUDIO_FUNC_1_N_BYTES_PER_SAMPLE_RX       2
@@ -62,7 +61,7 @@ extern "C" {
 // 48 kHz * 2 channel * 2 byte = 192 byte per frame 1ms
 // Mode asynchronous (feedback): host boleh mengirim 1 sampel ekstra per frame
 // -> (48 + 1) * 2 channel * 2 byte = 196 byte (setara TUD_AUDIO_EP_SIZE)
-#define CFG_TUD_AUDIO_FUNC_1_EP_OUT_SZ_MAX               196
+#define CFG_TUD_AUDIO_FUNC_1_EP_OUT_SZ_MAX               TUD_AUDIO_EP_SIZE(CFG_TUD_AUDIO_FUNC_1_MAX_SAMPLE_RATE, CFG_TUD_AUDIO_FUNC_1_N_BYTES_PER_SAMPLE_RX, CFG_TUD_AUDIO_FUNC_1_N_CHANNELS_RX)
 // Ukuran buffer software FIFO TinyUSB (4 ms)
 #define CFG_TUD_AUDIO_FUNC_1_EP_OUT_SW_BUF_SZ            (4 * CFG_TUD_AUDIO_FUNC_1_EP_OUT_SZ_MAX)
 
