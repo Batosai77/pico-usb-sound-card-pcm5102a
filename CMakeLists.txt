@@ -1,6 +1,10 @@
 cmake_minimum_required(VERSION 3.13)
 
-# Impor Pico SDK menggunakan skrip resmi
+# TinyUSB 0.21+ (UAC1 untuk Windows 7); di-clone oleh build.sh ke ./tinyusb
+if(NOT PICO_TINYUSB_PATH)
+    set(PICO_TINYUSB_PATH ${CMAKE_CURRENT_LIST_DIR}/tinyusb)
+endif()
+
 include(pico_sdk_import.cmake)
 
 project(pico_usb_sound_card C CXX ASM)

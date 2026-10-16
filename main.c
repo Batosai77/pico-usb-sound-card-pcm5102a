@@ -34,10 +34,18 @@ static uint32_t blink_interval_ms = BLINK_NOT_MOUNTED;
 static i2s_config_t i2s;
 static audio_ring_buffer_t audio_rb;
 
-// Kontrol Volume & Mute dari Host OS (Windows/Mac/Linux), index 0 = master
+// Kontrol Volume & Mute (UAC1 / Windows 7+), index 0 = master
 static int8_t mute[CFG_TUD_AUDIO_FUNC_1_N_CHANNELS_RX + 1];
-static int16_t volume[CFG_TUD_AUDIO_FUNC_1_N_CHANNELS_RX + 1]; // satuan 1/256 dB, 0 = 0 dB
+static int16_t volume_db[CFG_TUD_AUDIO_FUNC_1_N_CHANNELS_RX + 1]; // dB bilangan bulat, 0 = 0 dB
+static uint32_t current_sample_rate = AUDIO_SAMPLE_RATE;
 static uint32_t last_packet_time_ms = 0;
+
+static int32_t db_to_linear_gain(int16_t db) {
+    if (db >= 0) return 256;
+    int32_t gain = 256 + ((int32_t) db * 256) / 96;
+    if (gain < 0) gain = 0;
+    return gain;
+}
 
 /*------------- Inisialisasi LED -------------*/
 void led_init(void) {
@@ -86,14 +94,13 @@ void tud_resume_cb(void) {
     blink_interval_ms = tud_mounted() ? BLINK_MOUNTED : BLINK_NOT_MOUNTED;
 }
 
-/*------------- Callback Audio Class (UAC2) -------------*/
+/*------------- Callback Audio Class (UAC1 — Windows 7) -------------*/
 
-// Asynchronous Feedback: Memberi tahu host PC kecepatan konsumsi sampel audio
 void tud_audio_feedback_params_cb(uint8_t func_id, uint8_t alt_itf, audio_feedback_params_t* feedback_param) {
     (void)func_id;
     (void)alt_itf;
     feedback_param->method = AUDIO_FEEDBACK_METHOD_FIFO_COUNT;
-    feedback_param->sample_freq = AUDIO_SAMPLE_RATE;
+    feedback_param->sample_freq = current_sample_rate;
 }
 
 // Callback saat paket audio diterima dari Komputer via USB
@@ -117,28 +124,15 @@ bool tud_audio_rx_done_post_read_cb(uint8_t rhport, uint16_t n_bytes_received, u
         int16_t l = packet_buffer[i * 2 + 0];
         int16_t r = packet_buffer[i * 2 + 1];
 
-        // Terapkan Mute & Volume (master + per-channel seperti yang diharapkan UAC2/Windows)
         if (mute[0] || mute[1] || mute[2]) {
             l = 0;
             r = 0;
         } else {
-            int16_t vol_db = volume[0];
-            if (vol_db < 0) {
-                int32_t gain = 256 + ((int32_t)vol_db / 96);
-                if (gain < 0) gain = 0;
-                l = (int16_t)((l * gain) >> 8);
-                r = (int16_t)((r * gain) >> 8);
-            }
-            if (volume[1] < 0) {
-                int32_t gain = 256 + ((int32_t)volume[1] / 96);
-                if (gain < 0) gain = 0;
-                l = (int16_t)((l * gain) >> 8);
-            }
-            if (volume[2] < 0) {
-                int32_t gain = 256 + ((int32_t)volume[2] / 96);
-                if (gain < 0) gain = 0;
-                r = (int16_t)((r * gain) >> 8);
-            }
+            int32_t g0 = db_to_linear_gain(volume_db[0]);
+            int32_t g1 = db_to_linear_gain(volume_db[1]);
+            int32_t g2 = db_to_linear_gain(volume_db[2]);
+            l = (int16_t)((l * g0 * g1) >> 16);
+            r = (int16_t)((r * g0 * g2) >> 16);
         }
 
         ring_buffer_push(&audio_rb, l, r);
@@ -147,117 +141,107 @@ bool tud_audio_rx_done_post_read_cb(uint8_t rhport, uint16_t n_bytes_received, u
     return true;
 }
 
-// Kontrol Clock USB Audio
-bool tud_audio_clock_get_request(uint8_t rhport, audio_control_request_t const *request) {
-    if (request->bEntityID == UAC2_ENTITY_CLOCK && request->bControlSelector == AUDIO_CS_CTRL_SAM_FREQ) {
-        if (request->bRequest == AUDIO_CS_REQ_CUR) {
-            audio_control_cur_4_t curf = { (int32_t)tu_htole32(AUDIO_SAMPLE_RATE) };
-            return tud_audio_buffer_and_schedule_control_xfer(rhport, (tusb_control_request_t const *)request, &curf, sizeof(curf));
-        } else if (request->bRequest == AUDIO_CS_REQ_RANGE) {
-            audio_control_range_4_n_t(1) rangef = {
-                .wNumSubRanges = tu_htole16(1),
-                .subrange[0] = {
-                    .bMin = (int32_t)AUDIO_SAMPLE_RATE,
-                    .bMax = (int32_t)AUDIO_SAMPLE_RATE,
-                    .bRes = 0
-                }
-            };
-            return tud_audio_buffer_and_schedule_control_xfer(rhport, (tusb_control_request_t const *)request, &rangef, sizeof(rangef));
-        }
-    } else if (request->bEntityID == UAC2_ENTITY_CLOCK && request->bControlSelector == AUDIO_CS_CTRL_CLK_VALID) {
-        audio_control_cur_1_t cur_valid = { .bCur = 1 };
-        return tud_audio_buffer_and_schedule_control_xfer(rhport, (tusb_control_request_t const *)request, &cur_valid, sizeof(cur_valid));
+static bool uac1_set_req_ep(tusb_control_request_t const *p_request, uint8_t *p_buff) {
+    uint8_t ctrl_sel = TU_U16_HIGH(p_request->wValue);
+
+    if (ctrl_sel == AUDIO10_EP_CTRL_SAMPLING_FREQ && p_request->bRequest == AUDIO10_CS_REQ_SET_CUR) {
+        TU_VERIFY(p_request->wLength == 3);
+        current_sample_rate = tu_unaligned_read32(p_buff) & 0x00FFFFFFu;
+        return true;
     }
     return false;
 }
 
-bool tud_audio_clock_set_request(uint8_t rhport, audio_control_request_t const *request, uint8_t const *buf) {
-    (void)rhport;
+static bool uac1_get_req_ep(uint8_t rhport, tusb_control_request_t const *p_request) {
+    uint8_t ctrl_sel = TU_U16_HIGH(p_request->wValue);
 
-    if (request->bEntityID != UAC2_ENTITY_CLOCK || request->bRequest != AUDIO_CS_REQ_CUR) {
+    if (ctrl_sel == AUDIO10_EP_CTRL_SAMPLING_FREQ && p_request->bRequest == AUDIO10_CS_REQ_GET_CUR) {
+        uint8_t freq[3] = {
+            (uint8_t)(current_sample_rate & 0xFFu),
+            (uint8_t)((current_sample_rate >> 8) & 0xFFu),
+            (uint8_t)((current_sample_rate >> 16) & 0xFFu),
+        };
+        return tud_audio_buffer_and_schedule_control_xfer(rhport, p_request, freq, sizeof(freq));
+    }
+    return false;
+}
+
+static bool uac1_set_req_entity(tusb_control_request_t const *p_request, uint8_t *p_buff) {
+    uint8_t channel = TU_U16_LOW(p_request->wValue);
+    uint8_t ctrl_sel = TU_U16_HIGH(p_request->wValue);
+    uint8_t entity_id = TU_U16_HIGH(p_request->wIndex);
+
+    if (entity_id != UAC1_ENTITY_FEATURE_UNIT || channel > CFG_TUD_AUDIO_FUNC_1_N_CHANNELS_RX) {
         return false;
     }
 
-    if (request->bControlSelector == AUDIO_CS_CTRL_SAM_FREQ) {
-        if (request->wLength != sizeof(audio_control_cur_4_t)) return false;
-        uint32_t host_rate = (uint32_t)((audio_control_cur_4_t const *)buf)->bCur;
-        (void)host_rate;
+    if (ctrl_sel == AUDIO10_FU_CTRL_MUTE && p_request->bRequest == AUDIO10_CS_REQ_SET_CUR) {
+        TU_VERIFY(p_request->wLength == 1);
+        mute[channel] = p_buff[0];
+        return true;
+    }
+    if (ctrl_sel == AUDIO10_FU_CTRL_VOLUME && p_request->bRequest == AUDIO10_CS_REQ_SET_CUR) {
+        TU_VERIFY(p_request->wLength == 2);
+        volume_db[channel] = (int16_t)(tu_unaligned_read16(p_buff) / 256);
         return true;
     }
     return false;
 }
 
-// Kontrol Feature Unit: Volume & Mute dari Sistem Operasi
-bool tud_audio_feature_unit_get_request(uint8_t rhport, audio_control_request_t const *request) {
-    if (request->bEntityID != UAC2_ENTITY_FEATURE_UNIT) return false;
+static bool uac1_get_req_entity(uint8_t rhport, tusb_control_request_t const *p_request) {
+    uint8_t channel = TU_U16_LOW(p_request->wValue);
+    uint8_t ctrl_sel = TU_U16_HIGH(p_request->wValue);
+    uint8_t entity_id = TU_U16_HIGH(p_request->wIndex);
 
-    uint8_t ch = request->bChannelNumber;
-    if (ch > CFG_TUD_AUDIO_FUNC_1_N_CHANNELS_RX) return false;
+    if (entity_id != UAC1_ENTITY_FEATURE_UNIT || channel > CFG_TUD_AUDIO_FUNC_1_N_CHANNELS_RX) {
+        return false;
+    }
 
-    if (request->bControlSelector == AUDIO_FU_CTRL_MUTE && request->bRequest == AUDIO_CS_REQ_CUR) {
-        audio_control_cur_1_t cur_mute = { .bCur = mute[ch] };
-        return tud_audio_buffer_and_schedule_control_xfer(rhport, (tusb_control_request_t const *)request, &cur_mute, sizeof(cur_mute));
-    } else if (request->bControlSelector == AUDIO_FU_CTRL_VOLUME) {
-        if (request->bRequest == AUDIO_CS_REQ_RANGE) {
-            audio_control_range_2_n_t(1) range_vol = {
-                .wNumSubRanges = tu_htole16(1),
-                .subrange[0] = {
-                    .bMin = tu_htole16((int16_t)(-50 * 256)), // -50 dB
-                    .bMax = tu_htole16(0),                    // 0 dB
-                    .bRes = tu_htole16(256)                   // Step 1 dB
-                }
-            };
-            return tud_audio_buffer_and_schedule_control_xfer(rhport, (tusb_control_request_t const *)request, &range_vol, sizeof(range_vol));
-        } else if (request->bRequest == AUDIO_CS_REQ_CUR) {
-            audio_control_cur_2_t cur_vol = { .bCur = tu_htole16(volume[ch]) };
-            return tud_audio_buffer_and_schedule_control_xfer(rhport, (tusb_control_request_t const *)request, &cur_vol, sizeof(cur_vol));
+    if (ctrl_sel == AUDIO10_FU_CTRL_MUTE) {
+        return tud_audio_buffer_and_schedule_control_xfer(rhport, p_request, &mute[channel], 1);
+    }
+
+    if (ctrl_sel == AUDIO10_FU_CTRL_VOLUME) {
+        switch (p_request->bRequest) {
+            case AUDIO10_CS_REQ_GET_CUR: {
+                int16_t vol = (int16_t)(volume_db[channel] * 256);
+                return tud_audio_buffer_and_schedule_control_xfer(rhport, p_request, &vol, sizeof(vol));
+            }
+            case AUDIO10_CS_REQ_GET_MIN: {
+                int16_t min = (int16_t)(-90 * 256);
+                return tud_audio_buffer_and_schedule_control_xfer(rhport, p_request, &min, sizeof(min));
+            }
+            case AUDIO10_CS_REQ_GET_MAX: {
+                int16_t max = 0;
+                return tud_audio_buffer_and_schedule_control_xfer(rhport, p_request, &max, sizeof(max));
+            }
+            case AUDIO10_CS_REQ_GET_RES: {
+                int16_t res = 256;
+                return tud_audio_buffer_and_schedule_control_xfer(rhport, p_request, &res, sizeof(res));
+            }
+            default:
+                break;
         }
     }
     return false;
 }
 
-bool tud_audio_feature_unit_set_request(uint8_t rhport, audio_control_request_t const *request, uint8_t const *buf) {
-    (void)rhport;
-    if (request->bEntityID != UAC2_ENTITY_FEATURE_UNIT) return false;
-
-    uint8_t ch = request->bChannelNumber;
-    if (ch > CFG_TUD_AUDIO_FUNC_1_N_CHANNELS_RX) return false;
-
-    if (request->bControlSelector == AUDIO_FU_CTRL_MUTE && request->bRequest == AUDIO_CS_REQ_CUR) {
-        mute[ch] = ((audio_control_cur_1_t const *)buf)->bCur;
-        return true;
-    } else if (request->bControlSelector == AUDIO_FU_CTRL_VOLUME && request->bRequest == AUDIO_CS_REQ_CUR) {
-        volume[ch] = (int16_t)tu_le16toh(((audio_control_cur_2_t const *)buf)->bCur);
-        return true;
-    }
-    return false;
+bool tud_audio_set_req_ep_cb(uint8_t rhport, tusb_control_request_t const *p_request, uint8_t *p_buff) {
+    (void) rhport;
+    return uac1_set_req_ep(p_request, p_buff);
 }
 
-// Callback resmi TinyUSB untuk request class-specific ke Entity (Clock / Feature Unit).
-// Tanpa ini, TinyUSB memakai versi weak yang selalu STALL sehingga host
-// (Windows/Android) gagal menjalankan device ("device cannot start").
-bool tud_audio_get_req_entity_cb(uint8_t rhport, tusb_control_request_t const *p_request) {
-    audio_control_request_t const *request = (audio_control_request_t const *)p_request;
-
-    if (request->bEntityID == UAC2_ENTITY_CLOCK) {
-        return tud_audio_clock_get_request(rhport, request);
-    }
-    if (request->bEntityID == UAC2_ENTITY_FEATURE_UNIT) {
-        return tud_audio_feature_unit_get_request(rhport, request);
-    }
-    return false;
+bool tud_audio_get_req_ep_cb(uint8_t rhport, tusb_control_request_t const *p_request) {
+    return uac1_get_req_ep(rhport, p_request);
 }
 
 bool tud_audio_set_req_entity_cb(uint8_t rhport, tusb_control_request_t const *p_request, uint8_t *buf) {
-    audio_control_request_t const *request = (audio_control_request_t const *)p_request;
+    (void) rhport;
+    return uac1_set_req_entity(p_request, buf);
+}
 
-    if (request->bEntityID == UAC2_ENTITY_CLOCK) {
-        return tud_audio_clock_set_request(rhport, request, buf);
-    }
-    if (request->bEntityID == UAC2_ENTITY_FEATURE_UNIT) {
-        return tud_audio_feature_unit_set_request(rhport, request, buf);
-    }
-    return false;
+bool tud_audio_get_req_entity_cb(uint8_t rhport, tusb_control_request_t const *p_request) {
+    return uac1_get_req_entity(rhport, p_request);
 }
 
 /*------------- Program Utama (MAIN) -------------*/

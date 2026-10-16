@@ -45,13 +45,21 @@ else
     cd "$SCRIPT_DIR/pico-sdk" && git submodule update --init lib/tinyusb && cd "$SCRIPT_DIR"
 fi
 
+# 2b. TinyUSB 0.21+ (USB Audio Class 1.0 — dibutuhkan Windows 7)
+if [ ! -f "$SCRIPT_DIR/tinyusb/src/tusb.h" ]; then
+    echo "[-] tinyusb 0.21 belum ada. Mengkloning..."
+    git clone --depth 1 --branch 0.21.0 https://github.com/hathach/tinyusb.git "$SCRIPT_DIR/tinyusb"
+fi
+export PICO_TINYUSB_PATH="$SCRIPT_DIR/tinyusb"
+echo "[+] Menggunakan TinyUSB: $PICO_TINYUSB_PATH"
+
 # 3. Proses Kompilasi
 echo "[+] Menyiapkan direktori build..."
 mkdir -p build
 cd build
 
 echo "[+] Menjalankan CMake..."
-cmake -DPICO_SDK_PATH="$PICO_SDK_PATH" ..
+cmake -DPICO_SDK_PATH="$PICO_SDK_PATH" -DPICO_TINYUSB_PATH="$PICO_TINYUSB_PATH" ..
 
 echo "[+] Membangun firmware dengan Make..."
 make -j"$(nproc 2>/dev/null || echo 2)"

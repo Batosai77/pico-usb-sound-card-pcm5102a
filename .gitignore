@@ -22,6 +22,9 @@ build/pico_dac_pcm5102.*
 # Pico SDK clone (automatically cloned by build.sh if missing)
 pico-sdk/
 
+# TinyUSB 0.21+ (UAC1, cloned by build.sh)
+tinyusb/
+
 # Python cache & temporary files
 __pycache__/
 *.py[cod]
